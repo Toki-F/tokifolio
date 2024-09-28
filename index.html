@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toki Fukumoto - Portfolio</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #ffffff;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background-color: #f0f0f0;
+            padding: 20px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(to bottom right, transparent, #e0e0e0);
+            animation: rotate 20s linear infinite;
+            z-index: 1;
+        }
+
+        header .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            color: #333;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #007bff;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 40px 0;
+        }
+
+        .project {
+            background-color: #f0f0f0;
+            padding: 20px;
+            border-radius: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .project:hover {
+            transform: translateY(-5px);
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Updated styles for the hero section */
+        .hero {
+            background-color: #f8f8f8;
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle, transparent 20%, #f8f8f8 70%);
+            z-index: 1;
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        /* Sci-fi Halo Styles */
+        .sci-fi-halo {
+            position: absolute;
+            border-radius: 50%;
+            border: 2px solid rgba(0, 123, 255, 0.5);
+            pointer-events: none;
+        }
+
+        .halo-1 {
+            width: 300px;
+            height: 300px;
+            top: -50px;
+            left: -50px;
+            animation: rotate 20s linear infinite;
+        }
+
+        .halo-2 {
+            width: 400px;
+            height: 400px;
+            bottom: -100px;
+            right: -100px;
+            animation: rotate 25s linear infinite reverse;
+        }
+
+        .halo-3 {
+            width: 200px;
+            height: 200px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        /* New sci-fi ring styles */
+        .sci-fi-ring {
+            position: fixed;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .ring-left-1 {
+            width: 600px;
+            height: 600px;
+            top: -100px;
+            left: -200px;
+            border: 20px dashed rgba(64, 64, 64, 0.15);
+            animation: rotate 60s linear infinite;
+        }
+
+        .ring-left-2 {
+            width: 400px;
+            height: 400px;
+            bottom: -50px;
+            left: -100px;
+            border: 15px dashed rgba(64, 64, 64, 0.1);
+            animation: rotate 45s linear infinite reverse;
+        }
+
+        .ring-right-1 {
+            width: 700px;
+            height: 700px;
+            top: -150px;
+            right: -250px;
+            border: 25px dashed rgba(64, 64, 64, 0.12);
+            animation: rotate 55s linear infinite reverse;
+        }
+
+        .ring-right-2 {
+            width: 500px;
+            height: 500px;
+            bottom: -100px;
+            right: -150px;
+            border: 18px dashed rgba(64, 64, 64, 0.08);
+            animation: rotate 50s linear infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.5;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.2);
+                opacity: 0.8;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="sci-fi-ring ring-left-1" aria-hidden="true"></div>
+    <div class="sci-fi-ring ring-left-2" aria-hidden="true"></div>
+    <div class="sci-fi-ring ring-right-1" aria-hidden="true"></div>
+    <div class="sci-fi-ring ring-right-2" aria-hidden="true"></div>
+
+    <header>
+        <div class="container">
+            <h1>Toki Fukumoto</h1>
+            <nav>
+                <ul>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="sci-fi-halo halo-1" aria-hidden="true"></div>
+        <div class="sci-fi-halo halo-2" aria-hidden="true"></div>
+        <div class="sci-fi-halo halo-3" aria-hidden="true"></div>
+        <div class="container">
+            <h2>Welcome to My Futuristic Portfolio</h2>
+            <p>I'm a web developer creating innovative solutions for tomorrow's challenges.</p>
+            <a href="#contact" class="btn">Get in Touch</a>
+        </div>
+    </section>
+
+    <section id="projects" class="container">
+        <h2>My Projects</h2>
+        <div class="projects">
+            <div class="project">
+                <h3>Project 1</h3>
+                <p>Description of your first project goes here.</p>
+            </div>
+            <div class="project">
+                <h3>Project 2</h3>
+                <p>Description of your second project goes here.</p>
+            </div>
+            <div class="project">
+                <h3>Project 3</h3>
+                <p>Description of your third project goes here.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Your Name. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
