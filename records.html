@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Projects - Futuristic Portfolio</title>
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #ffffff;
+        color: #333;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    header {
+        background-color: #f0f0f0;
+        padding: 20px 0;
+        position: relative;
+        overflow: hidden;
+    }
+
+    header::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(to bottom right, transparent, #e0e0e0);
+        animation: rotate 20s linear infinite;
+        z-index: 1;
+    }
+
+    header .container {
+        position: relative;
+        z-index: 2;
+    }
+
+    h1 {
+        font-size: 2.5em;
+        margin-bottom: 10px;
+    }
+
+    nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+    nav ul li {
+        display: inline;
+        margin-right: 20px;
+    }
+
+    nav ul li a {
+        color: #333;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    nav ul li a:hover {
+        color: #007bff;
+    }
+
+    .projects-container {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        padding: 40px 0;
+    }
+
+    .project-item {
+        display: flex;
+        background-color: #f8f8f8;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
+    }
+
+    .project-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .project-image {
+        width: 200px;
+        height: 200px;
+        object-fit: cover;
+    }
+
+    .project-info {
+        padding: 20px;
+        flex-grow: 1;
+    }
+
+    .project-title {
+        font-size: 1.5em;
+        margin: 0 0 10px 0;
+    }
+
+    .project-year {
+        font-size: 1em;
+        color: #666;
+        margin: 0 0 10px 0;
+    }
+
+    .project-description {
+        font-size: 1em;
+        line-height: 1.5;
+    }
+
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-content {
+        background-color: #fff;
+        margin: 5% auto;
+        padding: 20px;
+        border-radius: 10px;
+        max-width: 800px;
+        max-height: 90vh;
+        overflow-y: auto;
+        position: relative;
+    }
+
+    .close-button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 24px;
+        cursor: pointer;
+    }
+
+    .modal-media {
+        width: 100%;
+        max-height: 400px;
+        object-fit: contain;
+        border-radius: 5px;
+        margin-bottom: 20px;
+    }
+
+    .modal-title {
+        font-size: 2em;
+        margin: 0 0 10px 0;
+    }
+
+    .modal-year {
+        font-size: 1.2em;
+        color: #666;
+        margin: 0 0 20px 0;
+    }
+
+    .modal-description {
+        font-size: 1em;
+        line-height: 1.6;
+        max-height: 300px; /* ここで高さを設定 */
+        overflow-y: auto; /* 縦方向のスクロールを有効に */
+        padding-right: 10px; /* スクロールバーとの間にスペースを作る */
+    }
+
+    .navigation-button {
+        position: absolute;
+        top: 30%;
+        transform: translateY(-50%);
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+        font-size: 18px;
+        z-index: 1001;
+    }
+
+    .prev-button {
+        left: 10px;
+    }
+
+    .next-button {
+        right: 10px;
+    }
+
+    /* Sci-fi ring styles */
+    .sci-fi-ring {
+        position: fixed;
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: -1;
+    }
+
+    .ring-left-1 {
+        width: 600px;
+        height: 600px;
+        top: -100px;
+        left: -200px;
+        border: 20px dashed rgba(64, 64, 64, 0.15);
+        animation: rotate 60s linear infinite;
+    }
+
+    .ring-left-2 {
+        width: 400px;
+        height: 400px;
+        bottom: -50px;
+        left: -100px;
+        border: 15px dashed rgba(64, 64, 64, 0.1);
+        animation: rotate 45s linear infinite reverse;
+    }
+
+    .ring-right-1 {
+        width: 700px;
+        height: 700px;
+        top: -150px;
+        right: -250px;
+        border: 25px dashed rgba(64, 64, 64, 0.12);
+        animation: rotate 55s linear infinite reverse;
+    }
+
+    .ring-right-2 {
+        width: 500px;
+        height: 500px;
+        bottom: -100px;
+        right: -150px;
+        border: 18px dashed rgba(64, 64, 64, 0.08);
+        animation: rotate 50s linear infinite;
+    }
+
+    a {
+        color: #333;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    a:hover {
+        color: #007bff;
+    }
+
+    @keyframes rotate {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    @media (max-width: 768px) {
+        .project-item {
+            flex-direction: column;
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+        }
+
+        .modal-content {
+            width: 90%;
+        }
+    }
+</style>
+</head>
+<body>
+<div class="sci-fi-ring ring-left-1" aria-hidden="true"></div>
+<div class="sci-fi-ring ring-left-2" aria-hidden="true"></div>
+<div class="sci-fi-ring ring-right-1" aria-hidden="true"></div>
+<div class="sci-fi-ring ring-right-2" aria-hidden="true"></div>
+
+<header>
+    <div class="container">
+        <h1>Toki Fukumoto</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="records.html">Record</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main class="container">
+    <div class="projects-container" id="projectsContainer">
+        <!-- Projects will be dynamically added here -->
+    </div>
+</main>
+
+<div id="projectModal" class="modal">
+    <div class="modal-content">
+        <span class="close-button" id="closeModal">&times;</span>
+        <div id="modalMedia"></div>
+        <h2 id="modalTitle" class="modal-title"></h2>
+        <p id="modalYear" class="modal-year"></p>
+        <p id="modalDescription" class="modal-description"></p>
+    </div>
+</div>
+
+<script>
+    const projects = [
+        {
+            title: "CANPASS",
+            year: "2023/9~1",
+            image: "https://res.cloudinary.com/dzopbb2j8/image/upload/v1727595695/a9jcb6i1ixwaqlot0nnu.png",
+            description: "大学生向けノート共有アプリ",
+            detailedDescription: `
+                <p>初めて本格的なチーム開発で開発したアプリ</p>
+                <p>3人のチームでフロントエンド、バックエンド、デザインで役割を分け、自分はバックエンドを担当</p>
+                <h4>開発期間</h4>
+                <p>4ヶ月</p>
+                <h4>担当</h4>
+                <p>企画、設計、開発、テスト</p>
+                <h4>使用技術</h4>
+                <p>Rails,Ruby,JavaScript,Next.js</p>
+            `,
+            video: "https://res.cloudinary.com/dzopbb2j8/video/upload/v1727595816/tcccsjisffomh0bvuf6f.mp4",
+            images: ["https://res.cloudinary.com/dzopbb2j8/image/upload/v1727595695/a9jcb6i1ixwaqlot0nnu.png"]
+        },
+        {
+            title: "TA/メンター,プログラマー",
+            year: "2023/7~",
+            image: "https://res.cloudinary.com/dzopbb2j8/image/upload/v1727593737/swidmiruigocnzbanz3e.jpg",
+            description: "様々なイベントや事業、企業でのメンター、TA、プログラマーの経験",
+            detailedDescription: `
+                <p>群馬県や上毛新聞社が主催するイベント、事業、文科省のSSHなどでTAやメンターを経験</p>
+                <p>県内のIT企業でイベントのメンターやプログラマーとしてバイトや手伝い</p>
+                <h4>詳細</h4>
+                <p>桐生高校物理部　プログラミング講座TA(群馬デジタルイノベーションチャレンジ)</p>
+                <p>プログラマーとして勉強・お手伝い(CICAC Inc)</p>
+                <p>ぐんまプログラミングハッカソン2023(上毛新聞社)</p>
+                <p>桐生高校　SSH探求授業　メンター(文部科学省SSH)</p>
+                <a href="https://shidojin.jp/news/img/2023/20240329.pdf">始動人Jr.キャンプ2023~2024　チーム「＠」メンター(PPP-C,株式会社サンダーバード)</a>
+                <p>画像引用</p>
+                <a href="https://x.com/dchalle_gunma/status/1681206892956360705?s=12&t=RGRr17IR72UUEWweQRwM-w">Xより</a>
+            `,
+            images: ["https://res.cloudinary.com/dzopbb2j8/image/upload/v1727593737/swidmiruigocnzbanz3e.jpg"]
+        },
+        {
+            title: "AIVtuber みくる",
+            year: "2023/6~7",
+            image: "https://res.cloudinary.com/dzopbb2j8/image/upload/v1727575726/f3h9mbrv6jbki3s11wia.png",
+            description: "GPT4ベースのAIVtuber。AIVtuberとは中身がAIのバーチャルユーチューバーのこと。YouTubeのコメントを拾い、音声で応答",
+            detailedDescription: `
+                <p>YouTubeのAPIで配信コメントをランダムに取得し、そのコメントとプロンプトを送ることでコメントに対する応答を作成して、VOICEVOXにて合成音声に変換し出力</p>
+                <h4>開発期間</h4>
+                <p>3週間</p>
+                <h4>担当</h4>
+                <p>企画、設計、開発、テストまで全て</p>
+                <h4>使用技術</h4>
+                <p>JavaScript, miibo, ChatGPT4, VOICEVOX</p>
+                <h4>配信</h4>
+                <p>https://www.youtube.com/live/Q0hN_8tuv8o?si=geOWnc-VSHJhx0r8</p>
+            `,
+            video: "https://res.cloudinary.com/dzopbb2j8/video/upload/v1727574574/v6npmyxwqduouf4ki6pw.mov",
+            images: ["https://res.cloudinary.com/dzopbb2j8/image/upload/v1727576371/k4uz67rxdgougymvj1id.png"]
+        },
+        {
+            title: "MeidoChan",
+            year: "2023/3",
+            image: "https://res.cloudinary.com/dzopbb2j8/image/upload/v1727584840/mcj5kqkbmfr0nojj9zzz.png",
+            description: "GPT3.5ベースのiOSAIチャットアプリ",
+            detailedDescription: `
+                <p>Swiftで入力したテキストに対してGPT3.5に回答を生成させ、表示するだけ</p>
+                <p>無邪気なメイドという設定でプロンプティング</p>
+                <h4>開発期間</h4>
+                <p>3日</p>
+                <h4>担当</h4>
+                <p>企画、設計、開発、テストまで全て</p>
+                <h4>使用技術</h4>
+                <p>Xcode, Swift, ChatGPT3.5</p>
+            `
+        },
+        {
+            title: "ロケット打ち上げ",
+            year: "2023/2",
+            image: "https://res.cloudinary.com/dzopbb2j8/image/upload/v1727579798/oirpa9mrejjc2httkngz.jpg",
+            description: "小型の固体燃料のモデルロケット",
+            detailedDescription: `
+                <p>高校の部活動の一環でロケットを打ち上げ</p>
+                <p>JAXAの先生の指導のもと、モデルロケットの打ち上げライセンスを取得し実際に校庭で打ち上げ実験</p>
+            `,
+            video: "https://res.cloudinary.com/dzopbb2j8/video/upload/v1727575876/ttljooskwkistzwuazjn.mp4",
+            images: ["https://res.cloudinary.com/dzopbb2j8/image/upload/v1727579798/oirpa9mrejjc2httkngz.jpg"]
+        },
+        {
+            title: "Space Technology",
+            year: "2022/11",
+            image: "https://res.cloudinary.com/dzopbb2j8/image/upload/v1727582162/vjfshtpt4bq6euus0yjf.webp",
+            description: "近未来に実現する宇宙技術のMV",
+            detailedDescription: `
+                <p>DaVinci Resolveを使って作成</p>
+                <p>火星の植民地化、月面基地、資源採掘、プラネタリーディフェンス、大規模な軌道ステーション、スターショット、スペースエレベータなど、アドアストラにおける様々なスペーステクノロジーをまとめたMV</p>
+                <p>自己満</p>
+                <h4>作成期間</h4>
+                <p>6時間</p>
+                <h4>担当</h4>
+                <p>企画、素材集めから編集、公開まで全て</p>
+                <h4>使用ソフト</h4>
+                <p>DaVince Resolve</p>
+                <h4>動画リンク</h4>
+                <a href="https://www.youtube.com/watch?v=_UvH_EOgqt4">https://www.youtube.com/watch?v=_UvH_EOgqt4</a>
+            `,
+            video: "https://res.cloudinary.com/dzopbb2j8/video/upload/v1727582845/y6b0ibpevo0xnwxpfwc5.mp4",
+        },
+        {
+            title: "MAYUlink",
+            year: "2022/6~8",
+            image: "https://res.cloudinary.com/dzopbb2j8/image/upload/v1727575745/oyakpyavfrfoiiwe8nne.png",
+            description: "桐生市内を走る電動バスMAYUをIoT化し、運行状況の把握、場所によって広告を自動再生するといった多くの機能を提供するMaaS",
+            detailedDescription: `
+                <p>桐生市内を走る低速電動バスMAYUの観光に役立てられるようなシステムを作れないかという話を、地元企業や群馬大学の先生方から物理部顧問経由で受けたことをきっかけに開発</p>
+                <p>GPSモジュールで位置情報を取得し、カメラで画像認識AIを用いて乗車人数を検出</p>
+                <p>位置情報や乗車人数をMQTTプロトコルで送信し、ユーザーがMAYUの運行状況や乗車人数を把握できる</p>
+                <p>取得した位置情報をもとに、設定された場所で特定の動画を再生（例）桐生が岡公園に近づいたら桐生が岡公園の紹介動画再生など</p>
+                <p>実証試験の様子はそこそこ中くらいに取り上げられた　報道記事↓</p>
+                <h4>開発期間</h4>
+                <p>2ヶ月</p>
+                <h4>担当</h4>
+                <p>企画、設計、開発、テストまで全て一人で担当（フロントエンド一部、観光動画の作成以外）</p>
+                <h4>使用技術</h4>
+                <p>Rails,Ruby,Python,HTML,CSS,JavaScript,ラズパイ,カメラ,GPSモジュール,MQTTプロトコル通信</p>
+                <h4>開発・テストの様子</h4>
+                <a href="https://youtu.be/U49CsVkYe-s?si=GGsCN2JYJ7D0BxbJ">MAYUlinkモジュールのプログラムの動作テスト</a><br>
+                <a href="https://youtu.be/Ez7CfmmXeOM?si=JeFGT2X3HJFT-f-3">[MAYUlink]位置情報と人数の送信機能LPSSの動作テスト（ローカルネットワーク）</a><br>
+                <a href="https://youtu.be/wkFWtYa9b3s?si=N97pAZZMT3SjilOd">[MAYUlink]動画再生機能のテスト1</a><br>
+                <a href="https://youtu.be/2gsYrOU-qsY?si=ekSXozYMbbtJ-1ev">[MAYUlink]動画再生機能テスト2</a>
+                <h4>メディア</h4>
+                <a href="https://youtu.be/GIysT_WIZzI">群馬テレビ</a><br>
+                <a href="https://www.tokyo-np.co.jp/article/197230">東京新聞</a><br>
+                <a href="https://kiryutimes.jp/article/VadIcrmy/">桐生タイムス</a><br>
+                <a href="https://www.jomo-news.co.jp/articles/-/162398">上毛新聞</a>
+            `,
+            video: "https://res.cloudinary.com/dzopbb2j8/video/upload/v1727574801/vnrqw06y8vs4izmqsieu.mp4",
+            images: [
+                "https://res.cloudinary.com/dzopbb2j8/image/upload/v1727575768/di8pq9vr0ykujtxix7pu.jpg",
+                "https://res.cloudinary.com/dzopbb2j8/image/upload/v1727575824/vgpqofwufacwid9ovpyj.jpg",
+                "https://res.cloudinary.com/dzopbb2j8/image/upload/v1727575745/oyakpyavfrfoiiwe8nne.png",
+                "https://res.cloudinary.com/dzopbb2j8/image/upload/v1727588055/py9iwaa6jhnehw91xm8d.jpg"
+            ]
+        },
+        {
+            title: "温度自動記録装置",
+            year: "2022/5",
+            image: "https://res.cloudinary.com/dzopbb2j8/image/upload/v1727588055/rqpoiw9mlmfspwtazozs.jpg",
+            description: "温度メータの数値の画像を自動で記録する装置",
+            detailedDescription: `
+                <p>物理チャレンジのお湯の冷め方を調べる実験にて、自分だとミスするので温度メータの数値の画像を30秒ごとに自動で記録する装置を開発</p>
+                <p>PiCameraを用いて画像を30秒ごとに保存し実験エポックごとにファイルに保存するプログラムをPythonで書き、Raspberry PiとPiCameraで装置を構築</p>
+                <h4>開発期間</h4>
+                <p>2時間</p>
+                <h4>担当</h4>
+                <p>企画、設計、開発、テストまで全て</p>
+                <h4>使用技術</h4>
+                <p>Python,ラズパイ,カメラ</p>
+            `,
+            images: [
+                "https://res.cloudinary.com/dzopbb2j8/image/upload/v1727588055/rqpoiw9mlmfspwtazozs.jpg"
+            ]
+        },
+        {
+            title: "LeanLifeSystem(LLS) 始動人Jr.キャンプ",
+            year: "2022/1~3",
+            image: "https://res.cloudinary.com/dzopbb2j8/image/upload/v1727501694/y4o5kljvfz6uap5sn7yo.jpg",
+            description: "先端食品管理システム",
+            detailedDescription: `
+                <p>講座でアイデアやチームワーク、プログラミング、AIなど様々な内容について学習</p>
+                <p>チームFoodXとしてチームの仲間やメンターと一緒にLeanLifeSystemを考案</p>
+                <p>食品をAIで自動で判別し、画像認識AIやエチレンガスセンサーといったセンサーなどを用いて食品の鮮度を評価</p>
+                <p>食品の鮮度と種類を一覧でスマホから確認でき、鮮度情報などをもとに献立を提案するなどの機能</p>
+                <p>始動人Jr.キャンプ終了後、未踏ジュニアに向けて様々な準備を行い、一次選考突破</p>
+                <p>しかし2次選考の面談で落選</p>
+                <h4>開発期間</h4>
+                <p>3ヶ月</p>
+                <h4>担当</h4>
+                <p>メンバーと一緒にアイデア出しや、資料の作成、発表。自分個人:技術的な部分や、未踏ジュニアに向けての資料作成とプロトタイプの開発のほとんど全て</p>
+                <h4>使用技術</h4>
+                <p>Rails,HTML,CSS,Python,ラズパイ,カメラ</p>
+            `,
+            images: [
+                "https://res.cloudinary.com/dzopbb2j8/image/upload/v1727590814/tyvintaqxskhjoybgv7l.png",
+                "https://res.cloudinary.com/dzopbb2j8/image/upload/v1727501660/gnsrcmo8gg30ka1z1ssq.jpg",
+                "https://res.cloudinary.com/dzopbb2j8/image/upload/v1727592482/ypiwykm9j3xx2vy7vgxq.jpg",
+                "https://res.cloudinary.com/dzopbb2j8/image/upload/v1727590817/retvierldfgqgjappc8b.jpg",
+                "https://res.cloudinary.com/dzopbb2j8/image/upload/v1727590819/ehaofml9yxvbjimrad5u.jpg"
+            ]
+        }
+    ];
+
+    const projectsContainer = document.getElementById('projectsContainer');
+    const modal = document.getElementById('projectModal');
+    const closeModal = document.getElementById('closeModal');
+    const modalMedia = document.getElementById('modalMedia');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalYear = document.getElementById('modalYear');
+    const modalDescription = document.getElementById('modalDescription');
+
+    function createProjectElement(project) {
+        const projectElement = document.createElement('div');
+        projectElement.className = 'project-item';
+        projectElement.innerHTML = `
+            <img src="${project.image}" alt="${project.title}" class="project-image">
+            <div class="project-info">
+                <h2 class="project-title">${project.title}</h2>
+                <p class="project-year">${project.year}</p>
+                <p class="project-description">${project.description}</p>
+            </div>
+        `;
+        projectElement.addEventListener('click', () => openModal(project));
+        return projectElement;
+    }
+
+    function openModal(project) {
+        const mediaItems = [];
+        if (project.video) {
+            mediaItems.push({ type: 'video', src: project.video });
+        }
+        if (project.images) {
+            project.images.forEach(img => mediaItems.push({ type: 'image', src: img }));
+        }
+        if (mediaItems.length === 0) {
+            mediaItems.push({ type: 'image', src: project.image });
+        }
+
+        showMedia(project, mediaItems, 0);
+
+        modalTitle.textContent = project.title;
+        modalYear.textContent = project.year;
+        modalDescription.innerHTML = project.detailedDescription;
+        modal.style.display = 'block';
+    }
+
+    function showMedia(project, mediaItems, index) {
+        modalMedia.innerHTML = '';
+        const currentItem = mediaItems[index];
+
+        if (currentItem.type === 'video') {
+            modalMedia.innerHTML = `
+                <video class="modal-media" controls>
+                    <source src="${currentItem.src}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            `;
+        } else {
+            modalMedia.innerHTML = `<img src="${currentItem.src}" alt="${project.title}" class="modal-media">`;
+        }
+
+        if (mediaItems.length > 1) {
+            const prevButton = document.createElement('button');
+            prevButton.textContent = '←';
+            prevButton.className = 'navigation-button prev-button';
+            prevButton.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const newIndex = (index - 1 + mediaItems.length) % mediaItems.length;
+                showMedia(project, mediaItems, newIndex);
+            });
+
+            const nextButton = document.createElement('button');
+            nextButton.textContent = '→';
+            nextButton.className = 'navigation-button next-button';
+            nextButton.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const newIndex = (index + 1) % mediaItems.length;
+                showMedia(project, mediaItems, newIndex);
+            });
+
+            modalMedia.appendChild(prevButton);
+            modalMedia.appendChild(nextButton);
+        }
+    }
+
+    closeModal.onclick = function() {
+        modal.style.display = 'none';
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = 'none';
+        }
+    }
+
+    projects.forEach(project => {
+        projectsContainer.appendChild(createProjectElement(project));
+    });
+</script>
+</body>
+</html>
