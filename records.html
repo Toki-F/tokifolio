@@ -138,78 +138,188 @@
         display: none;
         position: fixed;
         z-index: 1000;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
+        inset: 0;
+        background-color: rgba(0, 0, 0, 0.55);
+        align-items: center;
+        justify-content: center;
+        padding: 16px;
+        box-sizing: border-box;
+    }
+
+    .modal.is-open {
+        display: flex;
     }
 
     .modal-content {
         background-color: #fff;
-        margin: 5% auto;
-        padding: 20px;
+        padding: 48px 24px 24px;
         border-radius: 10px;
+        width: 100%;
         max-width: 800px;
-        max-height: 90vh;
+        max-height: calc(100vh - 32px);
         overflow-y: auto;
         position: relative;
+        box-sizing: border-box;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
     }
 
     .close-button {
         position: absolute;
-        top: 10px;
-        right: 10px;
+        top: 12px;
+        right: 12px;
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         font-size: 24px;
+        line-height: 1;
         cursor: pointer;
+        border: none;
+        background: #f0f0f0;
+        border-radius: 50%;
+        color: #333;
+        padding: 0;
+        z-index: 10;
+        transition: background-color 0.2s ease;
+    }
+
+    .close-button:hover {
+        background: #e0e0e0;
+    }
+
+    .modal-media-wrapper {
+        position: relative;
+        width: 100%;
+        min-height: 280px;
+        margin-bottom: 20px;
+        background-color: #f5f5f5;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .modal-media-inner {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        min-height: 280px;
     }
 
     .modal-media {
+        display: block;
         width: 100%;
-        max-height: 400px;
+        max-height: min(420px, 50vh);
         object-fit: contain;
-        border-radius: 5px;
-        margin-bottom: 20px;
+        opacity: 0;
+        transition: opacity 0.25s ease;
+    }
+
+    .modal-media.is-loaded {
+        opacity: 1;
+    }
+
+    .modal-loading {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(245, 245, 245, 0.92);
+        z-index: 2;
+        transition: opacity 0.25s ease;
+    }
+
+    .modal-loading.is-hidden {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .spinner {
+        width: 44px;
+        height: 44px;
+        border: 3px solid #e0e0e0;
+        border-top-color: #007bff;
+        border-radius: 50%;
+        animation: spin 0.75s linear infinite;
+    }
+
+    @keyframes spin {
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    .modal-media-counter {
+        position: absolute;
+        bottom: 10px;
+        right: 12px;
+        background-color: rgba(0, 0, 0, 0.55);
+        color: #fff;
+        font-size: 0.85em;
+        padding: 4px 10px;
+        border-radius: 12px;
+        z-index: 3;
+        pointer-events: none;
     }
 
     .modal-title {
-        font-size: 2em;
-        margin: 0 0 10px 0;
+        font-size: 1.75em;
+        margin: 0 0 8px 0;
+        padding-right: 32px;
     }
 
     .modal-year {
-        font-size: 1.2em;
+        font-size: 1.1em;
         color: #666;
-        margin: 0 0 20px 0;
+        margin: 0 0 16px 0;
     }
 
     .modal-description {
         font-size: 1em;
         line-height: 1.6;
-        max-height: 300px; /* ここで高さを設定 */
-        overflow-y: auto; /* 縦方向のスクロールを有効に */
-        padding-right: 10px; /* スクロールバーとの間にスペースを作る */
+        margin: 0;
+    }
+
+    .modal-description h4 {
+        margin: 1.2em 0 0.4em;
+    }
+
+    .modal-description h4:first-child {
+        margin-top: 0;
     }
 
     .navigation-button {
         position: absolute;
-        top: 30%;
+        top: 50%;
         transform: translateY(-50%);
         background-color: rgba(0, 0, 0, 0.5);
         color: white;
         border: none;
-        padding: 10px;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
         cursor: pointer;
         font-size: 18px;
-        z-index: 1001;
+        line-height: 1;
+        z-index: 4;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        transition: background-color 0.2s ease;
+    }
+
+    .navigation-button:hover {
+        background-color: rgba(0, 0, 0, 0.7);
     }
 
     .prev-button {
-        left: 10px;
+        left: 12px;
     }
 
     .next-button {
-        right: 10px;
+        right: 12px;
     }
 
     /* Sci-fi ring styles */
@@ -286,7 +396,33 @@
         }
 
         .modal-content {
-            width: 90%;
+            padding: 44px 16px 16px;
+        }
+
+        .modal-media-wrapper {
+            min-height: 200px;
+        }
+
+        .modal-media-inner {
+            min-height: 200px;
+        }
+
+        .modal-media {
+            max-height: min(280px, 40vh);
+        }
+
+        .navigation-button {
+            width: 36px;
+            height: 36px;
+            font-size: 16px;
+        }
+
+        .prev-button {
+            left: 8px;
+        }
+
+        .next-button {
+            right: 8px;
         }
     }
 </style>
@@ -318,13 +454,13 @@
     </div>
 </main>
 
-<div id="projectModal" class="modal">
+<div id="projectModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <div class="modal-content">
-        <span class="close-button" id="closeModal">&times;</span>
-        <div id="modalMedia"></div>
+        <button type="button" class="close-button" id="closeModal" aria-label="閉じる">&times;</button>
+        <div id="modalMedia" class="modal-media-wrapper"></div>
         <h2 id="modalTitle" class="modal-title"></h2>
         <p id="modalYear" class="modal-year"></p>
-        <p id="modalDescription" class="modal-description"></p>
+        <div id="modalDescription" class="modal-description"></div>
     </div>
 </div>
 
@@ -596,45 +732,116 @@
         return projectElement;
     }
 
+    function getVideoMimeType(src) {
+        if (src.endsWith('.mov')) return 'video/quicktime';
+        if (src.endsWith('.webm')) return 'video/webm';
+        return 'video/mp4';
+    }
+
+    function pauseModalVideos() {
+        modal.querySelectorAll('video').forEach((video) => {
+            video.pause();
+            video.removeAttribute('src');
+            video.load();
+        });
+    }
+
+    function closeModalDialog() {
+        pauseModalVideos();
+        modal.classList.remove('is-open');
+        modalMedia.innerHTML = '';
+        document.body.style.overflow = '';
+    }
+
     function openModal(project) {
         const mediaItems = [];
         if (project.video) {
             mediaItems.push({ type: 'video', src: project.video });
         }
         if (project.images) {
-            project.images.forEach(img => mediaItems.push({ type: 'image', src: img }));
+            project.images.forEach((img) => mediaItems.push({ type: 'image', src: img }));
         }
         if (mediaItems.length === 0) {
             mediaItems.push({ type: 'image', src: project.image });
         }
 
-        showMedia(project, mediaItems, 0);
-
         modalTitle.textContent = project.title;
         modalYear.textContent = project.year;
         modalDescription.innerHTML = project.detailedDescription;
-        modal.style.display = 'block';
+
+        showMedia(project, mediaItems, 0);
+        modal.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function markMediaLoaded(mediaEl, loadingEl) {
+        mediaEl.classList.add('is-loaded');
+        loadingEl.classList.add('is-hidden');
     }
 
     function showMedia(project, mediaItems, index) {
+        pauseModalVideos();
         modalMedia.innerHTML = '';
+
         const currentItem = mediaItems[index];
 
+        const loadingEl = document.createElement('div');
+        loadingEl.className = 'modal-loading';
+        loadingEl.setAttribute('aria-label', '読み込み中');
+        loadingEl.innerHTML = '<div class="spinner"></div>';
+
+        const innerEl = document.createElement('div');
+        innerEl.className = 'modal-media-inner';
+
+        let mediaEl;
         if (currentItem.type === 'video') {
-            modalMedia.innerHTML = `
-                <video class="modal-media" controls>
-                    <source src="${currentItem.src}" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            `;
+            mediaEl = document.createElement('video');
+            mediaEl.className = 'modal-media';
+            mediaEl.controls = true;
+            mediaEl.playsInline = true;
+            mediaEl.preload = 'metadata';
+
+            const source = document.createElement('source');
+            source.src = currentItem.src;
+            source.type = getVideoMimeType(currentItem.src);
+            mediaEl.appendChild(source);
+
+            const onVideoReady = () => markMediaLoaded(mediaEl, loadingEl);
+            mediaEl.addEventListener('loadeddata', onVideoReady, { once: true });
+            mediaEl.addEventListener('canplay', onVideoReady, { once: true });
+            mediaEl.addEventListener('error', () => markMediaLoaded(mediaEl, loadingEl), { once: true });
         } else {
-            modalMedia.innerHTML = `<img src="${currentItem.src}" alt="${project.title}" class="modal-media">`;
+            mediaEl = document.createElement('img');
+            mediaEl.className = 'modal-media';
+            mediaEl.alt = project.title;
+            mediaEl.decoding = 'async';
+
+            mediaEl.addEventListener('load', () => markMediaLoaded(mediaEl, loadingEl), { once: true });
+            mediaEl.addEventListener('error', () => markMediaLoaded(mediaEl, loadingEl), { once: true });
+            mediaEl.src = currentItem.src;
+            if (mediaEl.complete) {
+                markMediaLoaded(mediaEl, loadingEl);
+            }
         }
 
+        innerEl.appendChild(mediaEl);
+        if (currentItem.type === 'video') {
+            mediaEl.load();
+        }
+        modalMedia.appendChild(loadingEl);
+        modalMedia.appendChild(innerEl);
+
         if (mediaItems.length > 1) {
+            const counter = document.createElement('span');
+            counter.className = 'modal-media-counter';
+            counter.textContent = `${index + 1} / ${mediaItems.length}`;
+            modalMedia.appendChild(counter);
+
             const prevButton = document.createElement('button');
+            prevButton.type = 'button';
             prevButton.textContent = '←';
             prevButton.className = 'navigation-button prev-button';
+            prevButton.setAttribute('aria-label', '前のメディア');
             prevButton.addEventListener('click', (e) => {
                 e.stopPropagation();
                 const newIndex = (index - 1 + mediaItems.length) % mediaItems.length;
@@ -642,8 +849,10 @@
             });
 
             const nextButton = document.createElement('button');
+            nextButton.type = 'button';
             nextButton.textContent = '→';
             nextButton.className = 'navigation-button next-button';
+            nextButton.setAttribute('aria-label', '次のメディア');
             nextButton.addEventListener('click', (e) => {
                 e.stopPropagation();
                 const newIndex = (index + 1) % mediaItems.length;
@@ -655,15 +864,19 @@
         }
     }
 
-    closeModal.onclick = function() {
-        modal.style.display = 'none';
-    }
+    closeModal.addEventListener('click', closeModalDialog);
 
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = 'none';
+    modal.addEventListener('click', (event) => {
+        if (event.target === modal) {
+            closeModalDialog();
         }
-    }
+    });
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && modal.classList.contains('is-open')) {
+            closeModalDialog();
+        }
+    });
 
     projects.forEach(project => {
         projectsContainer.appendChild(createProjectElement(project));
