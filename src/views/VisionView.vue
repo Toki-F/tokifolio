@@ -44,25 +44,14 @@
           />
         </div>
 
-        <div
-          class="phase-split phase-split-reverse"
-          :class="{ 'phase-split--solo': !hasVisionMedia('sda') }"
-        >
-          <VisionMediaFigure
-            media-key="sda"
-            :caption="t('vision.media.sda')"
-            reveal-delay="1"
-            reveal-direction="left"
-          />
-          <div class="phase-text" data-reveal data-reveal-delay="3" data-reveal-direction="right">
-            <h3>{{ t('vision.phase1h2') }}</h3>
-            <p v-html="t('vision.phase1p2')"></p>
-            <ul class="stagger-list">
-              <li v-html="t('vision.phase1item5')"></li>
-              <li v-html="t('vision.phase1item6')"></li>
-              <li v-html="t('vision.phase1item7')"></li>
-            </ul>
-          </div>
+        <div class="phase-block" data-reveal>
+          <h3>{{ t('vision.phase1h2') }}</h3>
+          <p v-html="t('vision.phase1p2')"></p>
+          <ul class="stagger-list">
+            <li v-html="t('vision.phase1item5')"></li>
+            <li v-html="t('vision.phase1item6')"></li>
+            <li v-html="t('vision.phase1item7')"></li>
+          </ul>
         </div>
 
         <div class="phase-block" data-reveal>
@@ -151,17 +140,9 @@
                 </div>
               </div>
 
-              <div class="phase-split" :class="{ 'phase-split--solo': !hasVisionMedia('massDriver') }">
-                <div class="phase-text" data-reveal data-reveal-direction="left">
-                  <h3>{{ t('vision.phase2h3') }}</h3>
-                  <p v-html="t('vision.phase2p4')"></p>
-                </div>
-                <VisionMediaFigure
-                  media-key="massDriver"
-                  :caption="t('vision.media.massDriver')"
-                  reveal-delay="3"
-                  reveal-direction="right"
-                />
+              <div class="phase-block" data-reveal>
+                <h3>{{ t('vision.phase2h3') }}</h3>
+                <p v-html="t('vision.phase2p4')"></p>
               </div>
 
               <div class="phase-block" data-reveal>
@@ -198,21 +179,10 @@
 
             <!-- Phase 4 -->
             <section class="vision-section">
-              <div
-                class="phase-split phase-split-reverse"
-                :class="{ 'phase-split--solo': !hasVisionMedia('galaxy') }"
-              >
-                <VisionMediaFigure
-                  media-key="galaxy"
-                  :caption="t('vision.media.galaxy')"
-                  reveal-delay="1"
-                  reveal-direction="left"
-                />
-                <div class="phase-text" data-reveal data-reveal-delay="3" data-reveal-direction="right">
-                  <div class="phase-label">{{ t('vision.phase4Label') }}</div>
-                  <h2>{{ t('vision.phase4Title') }}</h2>
-                  <p v-html="t('vision.phase4p1')"></p>
-                </div>
+              <div class="phase-block" data-reveal>
+                <div class="phase-label">{{ t('vision.phase4Label') }}</div>
+                <h2>{{ t('vision.phase4Title') }}</h2>
+                <p v-html="t('vision.phase4p1')"></p>
               </div>
 
               <div class="phase-block" data-reveal>

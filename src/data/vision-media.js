@@ -15,10 +15,6 @@ export const visionMedia = {
     type: 'image',
     src: ''
   },
-  sda: {
-    type: 'image',
-    src: ''
-  },
   skyhook: {
     type: 'video',
     src: '',
@@ -28,19 +24,9 @@ export const visionMedia = {
     type: 'image',
     src: ''
   },
-  massDriver: {
-    type: 'video',
-    src: '',
-    poster: ''
-  },
   mars: {
     type: 'image',
     src: ''
-  },
-  galaxy: {
-    type: 'video',
-    src: '',
-    poster: ''
   },
   blackhole: {
     type: 'image',
