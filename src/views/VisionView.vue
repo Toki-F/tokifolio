@@ -1,125 +1,233 @@
 <template>
   <main class="container">
     <div ref="visionContent" class="vision-content">
+      <!-- Intro -->
       <section class="vision-section vision-intro">
-        <h1 class="intro-item intro-item-1">{{ t('vision.title') }}</h1>
-        <p class="intro-item intro-item-2" v-html="t('vision.intro')"></p>
-        <div class="vision-quote intro-item intro-item-3">{{ t('vision.quote') }}</div>
-      </section>
-
-      <section class="vision-section phase-section" data-reveal>
-        <div class="phase-label">{{ t('vision.phase1Label') }}</div>
-        <h2>{{ t('vision.phase1Title') }}</h2>
-        <p v-html="t('vision.phase1p1')"></p>
-        <h3>{{ t('vision.phase1h1') }}</h3>
-        <ul class="stagger-list">
-          <li v-html="t('vision.phase1item1')"></li>
-          <li v-html="t('vision.phase1item2')"></li>
-          <li v-html="t('vision.phase1item3')"></li>
-          <li v-html="t('vision.phase1item4')"></li>
-        </ul>
-        <h3>{{ t('vision.phase1h2') }}</h3>
-        <p v-html="t('vision.phase1p2')"></p>
-        <ul class="stagger-list">
-          <li v-html="t('vision.phase1item5')"></li>
-          <li v-html="t('vision.phase1item6')"></li>
-          <li v-html="t('vision.phase1item7')"></li>
-        </ul>
-        <h3>{{ t('vision.phase1h3') }}</h3>
-        <p v-html="t('vision.phase1p3')"></p>
-      </section>
-
-      <section class="vision-section vision-locked" data-reveal>
-        <template v-if="!isUnlocked">
-          <div class="locked-gate">
-            <div class="locked-icon" aria-hidden="true">🔒</div>
-            <h2>{{ t('vision.lockedTitle') }}</h2>
-            <p>{{ t('vision.lockedDesc') }}</p>
-            <form class="locked-form" @submit.prevent="handleUnlock">
-              <label class="locked-label" for="vision-key">{{ t('vision.keyLabel') }}</label>
-              <div class="locked-input-row">
-                <input
-                  id="vision-key"
-                  v-model="keyInput"
-                  type="password"
-                  :placeholder="t('vision.keyPlaceholder')"
-                  autocomplete="off"
-                  :disabled="!hasAccessKey"
-                />
-                <button type="submit" :disabled="!hasAccessKey || !keyInput">
-                  {{ t('vision.unlock') }}
-                </button>
-              </div>
-              <p v-if="unlockError" class="locked-error">{{ t('vision.unlockError') }}</p>
-              <p v-if="!hasAccessKey" class="locked-note">{{ t('vision.keyNotConfigured') }}</p>
-            </form>
+        <div class="intro-grid">
+          <div class="intro-text">
+            <h1 class="intro-item intro-item-1">{{ t('vision.title') }}</h1>
+            <p class="intro-item intro-item-2" v-html="t('vision.intro')"></p>
+            <div class="vision-quote intro-item intro-item-3">{{ t('vision.quote') }}</div>
           </div>
-        </template>
+          <figure class="intro-visual intro-item intro-item-4 is-revealed">
+            <VisionDiagram type="intro" :caption="t('vision.diagrams.intro')" />
+            <figcaption>{{ t('vision.diagrams.intro') }}</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- Phase 1 -->
+      <section class="vision-section">
+        <div class="phase-block" data-reveal>
+          <div class="phase-label">{{ t('vision.phase1Label') }}</div>
+          <h2>{{ t('vision.phase1Title') }}</h2>
+          <p v-html="t('vision.phase1p1')"></p>
+        </div>
+
+        <div class="phase-split">
+          <div class="phase-text" data-reveal data-reveal-direction="left">
+            <h3>{{ t('vision.phase1h1') }}</h3>
+            <ul class="stagger-list">
+              <li v-html="t('vision.phase1item1')"></li>
+              <li v-html="t('vision.phase1item2')"></li>
+              <li v-html="t('vision.phase1item3')"></li>
+              <li v-html="t('vision.phase1item4')"></li>
+            </ul>
+          </div>
+          <figure class="phase-visual" data-reveal data-reveal-delay="3" data-reveal-direction="right">
+            <VisionDiagram type="nexus" :caption="t('vision.diagrams.nexus')" />
+            <figcaption>{{ t('vision.diagrams.nexus') }}</figcaption>
+          </figure>
+        </div>
+
+        <div class="phase-split phase-split-reverse">
+          <figure class="phase-visual" data-reveal data-reveal-delay="1" data-reveal-direction="left">
+            <VisionDiagram type="sda" :caption="t('vision.diagrams.sda')" />
+            <figcaption>{{ t('vision.diagrams.sda') }}</figcaption>
+          </figure>
+          <div class="phase-text" data-reveal data-reveal-delay="3" data-reveal-direction="right">
+            <h3>{{ t('vision.phase1h2') }}</h3>
+            <p v-html="t('vision.phase1p2')"></p>
+            <ul class="stagger-list">
+              <li v-html="t('vision.phase1item5')"></li>
+              <li v-html="t('vision.phase1item6')"></li>
+              <li v-html="t('vision.phase1item7')"></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="phase-block" data-reveal>
+          <h3>{{ t('vision.phase1h3') }}</h3>
+          <p v-html="t('vision.phase1p3')"></p>
+        </div>
+      </section>
+
+      <!-- Locked section -->
+      <section class="vision-section vision-locked">
+        <div class="phase-block" data-reveal>
+          <template v-if="!isUnlocked">
+            <div class="locked-gate">
+              <div class="locked-icon" aria-hidden="true">🔒</div>
+              <h2>{{ t('vision.lockedTitle') }}</h2>
+              <p>{{ t('vision.lockedDesc') }}</p>
+              <form class="locked-form" @submit.prevent="handleUnlock">
+                <label class="locked-label" for="vision-key">{{ t('vision.keyLabel') }}</label>
+                <div class="locked-input-row">
+                  <input
+                    id="vision-key"
+                    v-model="keyInput"
+                    type="password"
+                    :placeholder="t('vision.keyPlaceholder')"
+                    autocomplete="off"
+                    :disabled="!hasAccessKey"
+                  />
+                  <button type="submit" :disabled="!hasAccessKey || !keyInput">
+                    {{ t('vision.unlock') }}
+                  </button>
+                </div>
+                <p v-if="unlockError" class="locked-error">{{ t('vision.unlockError') }}</p>
+                <p v-if="!hasAccessKey" class="locked-note">{{ t('vision.keyNotConfigured') }}</p>
+              </form>
+            </div>
+          </template>
+        </div>
 
         <Transition name="vision-unlock" @after-enter="refreshReveal">
           <div v-if="isUnlocked" class="unlocked-content">
-            <div class="ultra-plan-toolbar">
+            <div class="ultra-plan-toolbar" data-reveal>
               <span class="ultra-plan-badge">{{ t('vision.unlockedBadge') }}</span>
               <button type="button" class="relock-btn" @click="handleLock">
                 {{ t('vision.relock') }}
               </button>
             </div>
 
-            <section class="vision-section ultra-intro" data-reveal>
+            <div class="phase-block ultra-intro" data-reveal>
               <p v-html="t('vision.ultraIntro')"></p>
+            </div>
+
+            <!-- Phase 2 -->
+            <section class="vision-section">
+              <div class="phase-block" data-reveal>
+                <div class="phase-label">{{ t('vision.phase2Label') }}</div>
+                <h2>{{ t('vision.phase2Title') }}</h2>
+                <p v-html="t('vision.phase2p1')"></p>
+              </div>
+
+              <div class="phase-split">
+                <div class="phase-text" data-reveal data-reveal-direction="left">
+                  <h3>{{ t('vision.phase2h1') }}</h3>
+                  <p v-html="t('vision.phase2p2')"></p>
+                </div>
+                <figure class="phase-visual" data-reveal data-reveal-delay="3" data-reveal-direction="right">
+                  <VisionDiagram type="skyhook" :caption="t('vision.diagrams.skyhook')" />
+                  <figcaption>{{ t('vision.diagrams.skyhook') }}</figcaption>
+                </figure>
+              </div>
+
+              <div class="phase-split phase-split-reverse">
+                <figure class="phase-visual" data-reveal data-reveal-delay="1" data-reveal-direction="left">
+                  <VisionDiagram type="fusion" :caption="t('vision.diagrams.fusion')" />
+                  <figcaption>{{ t('vision.diagrams.fusion') }}</figcaption>
+                </figure>
+                <div class="phase-text" data-reveal data-reveal-delay="3" data-reveal-direction="right">
+                  <h3>{{ t('vision.phase2h2') }}</h3>
+                  <p v-html="t('vision.phase2p3')"></p>
+                </div>
+              </div>
+
+              <div class="phase-split">
+                <div class="phase-text" data-reveal data-reveal-direction="left">
+                  <h3>{{ t('vision.phase2h3') }}</h3>
+                  <p v-html="t('vision.phase2p4')"></p>
+                </div>
+                <figure class="phase-visual" data-reveal data-reveal-delay="3" data-reveal-direction="right">
+                  <VisionDiagram type="mass-driver" :caption="t('vision.diagrams.massDriver')" />
+                  <figcaption>{{ t('vision.diagrams.massDriver') }}</figcaption>
+                </figure>
+              </div>
+
+              <div class="phase-block" data-reveal>
+                <h3>{{ t('vision.phase2h4') }}</h3>
+                <p v-html="t('vision.phase2p5')"></p>
+              </div>
             </section>
 
-            <section class="vision-section phase-section" data-reveal>
-              <div class="phase-label">{{ t('vision.phase2Label') }}</div>
-              <h2>{{ t('vision.phase2Title') }}</h2>
-              <p v-html="t('vision.phase2p1')"></p>
-              <h3>{{ t('vision.phase2h1') }}</h3>
-              <p v-html="t('vision.phase2p2')"></p>
-              <h3>{{ t('vision.phase2h2') }}</h3>
-              <p v-html="t('vision.phase2p3')"></p>
-              <h3>{{ t('vision.phase2h3') }}</h3>
-              <p v-html="t('vision.phase2p4')"></p>
-              <h3>{{ t('vision.phase2h4') }}</h3>
-              <p v-html="t('vision.phase2p5')"></p>
+            <!-- Phase 3 -->
+            <section class="vision-section">
+              <div class="phase-split">
+                <div class="phase-text" data-reveal data-reveal-direction="left">
+                  <div class="phase-label">{{ t('vision.phase3Label') }}</div>
+                  <h2>{{ t('vision.phase3Title') }}</h2>
+                  <p v-html="t('vision.phase3p1')"></p>
+                </div>
+                <figure class="phase-visual" data-reveal data-reveal-delay="3" data-reveal-direction="right">
+                  <VisionDiagram type="mars" :caption="t('vision.diagrams.mars')" />
+                  <figcaption>{{ t('vision.diagrams.mars') }}</figcaption>
+                </figure>
+              </div>
+
+              <div class="phase-block" data-reveal>
+                <ul class="stagger-list">
+                  <li v-html="t('vision.phase3item1')"></li>
+                  <li v-html="t('vision.phase3item2')"></li>
+                  <li v-html="t('vision.phase3item3')"></li>
+                </ul>
+                <p v-html="t('vision.phase3p2')"></p>
+              </div>
             </section>
 
-            <section class="vision-section phase-section" data-reveal>
-              <div class="phase-label">{{ t('vision.phase3Label') }}</div>
-              <h2>{{ t('vision.phase3Title') }}</h2>
-              <p v-html="t('vision.phase3p1')"></p>
-              <ul class="stagger-list">
-                <li v-html="t('vision.phase3item1')"></li>
-                <li v-html="t('vision.phase3item2')"></li>
-                <li v-html="t('vision.phase3item3')"></li>
-              </ul>
-              <p v-html="t('vision.phase3p2')"></p>
+            <!-- Phase 4 -->
+            <section class="vision-section">
+              <div class="phase-split phase-split-reverse">
+                <figure class="phase-visual" data-reveal data-reveal-delay="1" data-reveal-direction="left">
+                  <VisionDiagram type="galaxy" :caption="t('vision.diagrams.galaxy')" />
+                  <figcaption>{{ t('vision.diagrams.galaxy') }}</figcaption>
+                </figure>
+                <div class="phase-text" data-reveal data-reveal-delay="3" data-reveal-direction="right">
+                  <div class="phase-label">{{ t('vision.phase4Label') }}</div>
+                  <h2>{{ t('vision.phase4Title') }}</h2>
+                  <p v-html="t('vision.phase4p1')"></p>
+                </div>
+              </div>
+
+              <div class="phase-block" data-reveal>
+                <ul class="stagger-list">
+                  <li v-html="t('vision.phase4item1')"></li>
+                  <li v-html="t('vision.phase4item2')"></li>
+                  <li v-html="t('vision.phase4item3')"></li>
+                </ul>
+                <p v-html="t('vision.phase4p2')"></p>
+              </div>
             </section>
 
-            <section class="vision-section phase-section" data-reveal>
-              <div class="phase-label">{{ t('vision.phase4Label') }}</div>
-              <h2>{{ t('vision.phase4Title') }}</h2>
-              <p v-html="t('vision.phase4p1')"></p>
-              <ul class="stagger-list">
-                <li v-html="t('vision.phase4item1')"></li>
-                <li v-html="t('vision.phase4item2')"></li>
-                <li v-html="t('vision.phase4item3')"></li>
-              </ul>
-              <p v-html="t('vision.phase4p2')"></p>
-            </section>
+            <!-- Phase 5 -->
+            <section class="vision-section phase-final">
+              <div class="phase-split">
+                <div class="phase-text" data-reveal data-reveal-direction="left">
+                  <div class="phase-label">{{ t('vision.phase5Label') }}</div>
+                  <h2>{{ t('vision.phase5Title') }}</h2>
+                  <p v-html="t('vision.phase5p1')"></p>
+                </div>
+                <figure class="phase-visual phase-visual-dark" data-reveal data-reveal-delay="3" data-reveal-direction="right">
+                  <VisionDiagram type="blackhole" :caption="t('vision.diagrams.blackhole')" />
+                  <figcaption>{{ t('vision.diagrams.blackhole') }}</figcaption>
+                </figure>
+              </div>
 
-            <section class="vision-section phase-section phase-final" data-reveal>
-              <div class="phase-label">{{ t('vision.phase5Label') }}</div>
-              <h2>{{ t('vision.phase5Title') }}</h2>
-              <p v-html="t('vision.phase5p1')"></p>
-              <h3>{{ t('vision.phase5h1') }}</h3>
-              <p v-html="t('vision.phase5p2')"></p>
-              <h3>{{ t('vision.phase5h2') }}</h3>
-              <ul class="stagger-list">
-                <li v-html="t('vision.phase5item1')"></li>
-                <li v-html="t('vision.phase5item2')"></li>
-                <li v-html="t('vision.phase5item3')"></li>
-              </ul>
-              <p v-html="t('vision.phase5p3')"></p>
+              <div class="phase-block" data-reveal>
+                <h3>{{ t('vision.phase5h1') }}</h3>
+                <p v-html="t('vision.phase5p2')"></p>
+              </div>
+
+              <div class="phase-block" data-reveal>
+                <h3>{{ t('vision.phase5h2') }}</h3>
+                <ul class="stagger-list">
+                  <li v-html="t('vision.phase5item1')"></li>
+                  <li v-html="t('vision.phase5item2')"></li>
+                  <li v-html="t('vision.phase5item3')"></li>
+                </ul>
+                <p v-html="t('vision.phase5p3')"></p>
+              </div>
             </section>
           </div>
         </Transition>
@@ -133,6 +241,7 @@ import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useVisionAccess } from '@/composables/useVisionAccess'
 import { useScrollReveal } from '@/composables/useScrollReveal'
+import VisionDiagram from '@/components/vision/VisionDiagram.vue'
 
 const { t } = useI18n()
 const { isUnlocked, hasAccessKey, unlock, lock } = useVisionAccess()
@@ -185,7 +294,62 @@ function handleLock() {
 }
 
 .vision-section {
-  margin-bottom: 40px;
+  margin-bottom: 48px;
+}
+
+.intro-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: center;
+}
+
+.intro-visual,
+.phase-visual {
+  margin: 0;
+  padding: 20px;
+  background: linear-gradient(135deg, #f8f9fa 0%, #ecf0f1 100%);
+  border-radius: 12px;
+  border: 1px solid #dce1e4;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+.phase-visual-dark {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  border-color: #2c3e50;
+}
+
+.intro-visual figcaption,
+.phase-visual figcaption {
+  margin-top: 12px;
+  text-align: center;
+  font-size: 0.85em;
+  color: #7f8c8d;
+  font-style: italic;
+}
+
+.phase-visual-dark figcaption {
+  color: #bdc3c7;
+}
+
+.phase-block {
+  margin-bottom: 36px;
+}
+
+.phase-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: center;
+  margin-bottom: 36px;
+}
+
+.phase-split-reverse .phase-visual {
+  order: -1;
+}
+
+.phase-text {
+  min-width: 0;
 }
 
 .intro-item {
@@ -194,29 +358,30 @@ function handleLock() {
   animation: introFadeIn 0.85s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
-.intro-item-1 {
-  animation-delay: 0.1s;
-}
-
-.intro-item-2 {
-  animation-delay: 0.28s;
-}
-
-.intro-item-3 {
-  animation-delay: 0.46s;
-}
+.intro-item-1 { animation-delay: 0.1s; }
+.intro-item-2 { animation-delay: 0.28s; }
+.intro-item-3 { animation-delay: 0.46s; }
+.intro-item-4 { animation-delay: 0.64s; }
 
 [data-reveal] {
   opacity: 0;
-  transform: translateY(32px);
+  transform: translateY(36px);
   transition:
-    opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+    opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+[data-reveal][data-reveal-direction='left'] {
+  transform: translateX(-40px) translateY(20px);
+}
+
+[data-reveal][data-reveal-direction='right'] {
+  transform: translateX(40px) translateY(20px);
 }
 
 [data-reveal].is-revealed {
   opacity: 1;
-  transform: translateY(0);
+  transform: translate(0, 0);
 }
 
 [data-reveal].is-revealed .stagger-list li {
@@ -402,9 +567,7 @@ function handleLock() {
 }
 
 .vision-unlock-leave-active {
-  transition:
-    opacity 0.35s ease,
-    transform 0.35s ease;
+  transition: opacity 0.35s ease, transform 0.35s ease;
 }
 
 .vision-unlock-enter-from,
@@ -458,56 +621,38 @@ function handleLock() {
 }
 
 @keyframes introFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(24px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes listItemFadeIn {
-  from {
-    opacity: 0;
-    transform: translateX(-12px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+  from { opacity: 0; transform: translateX(-12px); }
+  to { opacity: 1; transform: translateX(0); }
 }
 
 @keyframes shimmer {
-  0%,
-  100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }
 
 @keyframes lockPulse {
-  0%,
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  50% {
-    transform: scale(1.08);
-    opacity: 0.85;
-  }
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.08); opacity: 0.85; }
 }
 
 @keyframes badgeGlow {
-  0%,
-  100% {
-    box-shadow: 0 0 0 rgba(44, 62, 80, 0);
+  0%, 100% { box-shadow: 0 0 0 rgba(44, 62, 80, 0); }
+  50% { box-shadow: 0 0 16px rgba(44, 62, 80, 0.35); }
+}
+
+@media (max-width: 768px) {
+  .intro-grid,
+  .phase-split {
+    grid-template-columns: 1fr;
   }
-  50% {
-    box-shadow: 0 0 16px rgba(44, 62, 80, 0.35);
+
+  .phase-split-reverse .phase-visual {
+    order: 0;
   }
 }
 

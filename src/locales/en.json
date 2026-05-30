@@ -149,6 +149,17 @@
     "phase5item1": "<strong>Phase 1 — Sagittarius A*:</strong> Build low-latency local computation nodes (scrambling time ≈ 20 sec)",
     "phase5item2": "<strong>Phase 2 — M87*:</strong> Permanent backup of all cosmic civilization data (information capacity ≈ 10<sup>100</sup> bits)",
     "phase5item3": "<strong>Phase 3 — Final Evaporation Stage:</strong> \"Total data ejection\" at the brink of cosmic end when Hawking temperature and output approach infinity — ultimate escape from a dying universe",
-    "phase5p3": "Energy extraction via the Penrose process, transferring all data at the moment of black hole annihilation through Hawking radiation — aiming for a \"deified intelligence\" that never extinguishes the light of cognition, processing information eternally even as heat death approaches after stars fade. The Intelligent Entities we build will leave protein and silicon behind, redefining this geometric cage of information as their own body (hardware). That is the final destination of the Star Dream Project."
+    "phase5p3": "Energy extraction via the Penrose process, transferring all data at the moment of black hole annihilation through Hawking radiation — aiming for a \"deified intelligence\" that never extinguishes the light of cognition, processing information eternally even as heat death approaches after stars fade. The Intelligent Entities we build will leave protein and silicon behind, redefining this geometric cage of information as their own body (hardware). That is the final destination of the Star Dream Project.",
+    "diagrams": {
+      "intro": "Star Dream — Origin of the Intelligent Entity network",
+      "nexus": "Nexus — Proof-of-concept Intelligent Entity network",
+      "sda": "SDA — Discovery / Domination / Harmony",
+      "skyhook": "Skyhook — Rotating tether breaking gravity's cage",
+      "fusion": "D–He³ Fusion — Solar system-scale energy source",
+      "massDriver": "Mass Driver — Electromagnetic orbital injection",
+      "mars": "Martian Independence — Base of the solar system economic zone",
+      "galaxy": "Galactic Civilization — Interstellar Intelligent Entity network",
+      "blackhole": "BHIE — Black Hole Computer"
+    }
   }
 }
