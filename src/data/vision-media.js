@@ -24,6 +24,10 @@ export const visionMedia = {
     type: 'image',
     src: ''
   },
+  marsColonization: {
+    type: 'image',
+    src: ''
+  },
   mars: {
     type: 'image',
     src: ''

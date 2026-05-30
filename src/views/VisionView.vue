@@ -140,9 +140,17 @@
                 </div>
               </div>
 
-              <div class="phase-block" data-reveal>
-                <h3>{{ t('vision.phase2h3') }}</h3>
-                <p v-html="t('vision.phase2p4')"></p>
+              <div class="phase-split" :class="{ 'phase-split--solo': !hasVisionMedia('marsColonization') }">
+                <div class="phase-text" data-reveal data-reveal-direction="left">
+                  <h3>{{ t('vision.phase2h3') }}</h3>
+                  <p v-html="t('vision.phase2p4')"></p>
+                </div>
+                <VisionMediaFigure
+                  media-key="marsColonization"
+                  :caption="t('vision.media.marsColonization')"
+                  reveal-delay="3"
+                  reveal-direction="right"
+                />
               </div>
 
               <div class="phase-block" data-reveal>
@@ -178,7 +186,7 @@
             </section>
 
             <!-- Phase 4 -->
-            <section class="vision-section">
+            <section class="vision-section phase-final">
               <div class="phase-block" data-reveal>
                 <div class="phase-label">{{ t('vision.phase4Label') }}</div>
                 <h2>{{ t('vision.phase4Title') }}</h2>
@@ -193,15 +201,11 @@
                 </ul>
                 <p v-html="t('vision.phase4p2')"></p>
               </div>
-            </section>
 
-            <!-- Phase 5 -->
-            <section class="vision-section phase-final">
               <div class="phase-split" :class="{ 'phase-split--solo': !hasVisionMedia('blackhole') }">
                 <div class="phase-text" data-reveal data-reveal-direction="left">
-                  <div class="phase-label">{{ t('vision.phase5Label') }}</div>
-                  <h2>{{ t('vision.phase5Title') }}</h2>
-                  <p v-html="t('vision.phase5p1')"></p>
+                  <h3>{{ t('vision.phase4h1') }}</h3>
+                  <p v-html="t('vision.phase4p3')"></p>
                 </div>
                 <VisionMediaFigure
                   media-key="blackhole"
@@ -213,18 +217,13 @@
               </div>
 
               <div class="phase-block" data-reveal>
-                <h3>{{ t('vision.phase5h1') }}</h3>
-                <p v-html="t('vision.phase5p2')"></p>
-              </div>
-
-              <div class="phase-block" data-reveal>
-                <h3>{{ t('vision.phase5h2') }}</h3>
+                <h3>{{ t('vision.phase4h2') }}</h3>
                 <ul class="stagger-list">
-                  <li v-html="t('vision.phase5item1')"></li>
-                  <li v-html="t('vision.phase5item2')"></li>
-                  <li v-html="t('vision.phase5item3')"></li>
+                  <li v-html="t('vision.phase4item4')"></li>
+                  <li v-html="t('vision.phase4item5')"></li>
+                  <li v-html="t('vision.phase4item6')"></li>
                 </ul>
-                <p v-html="t('vision.phase5p3')"></p>
+                <p v-html="t('vision.phase4p4')"></p>
               </div>
             </section>
           </div>
