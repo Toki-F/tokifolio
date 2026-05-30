@@ -1,0 +1,55 @@
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.header-brand {
+  flex: 1;
+}
+
+.lang-switcher {
+  display: flex;
+  gap: 0;
+  flex-shrink: 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
+  background-color: #fff;
+}
+
+.lang-btn {
+  padding: 6px 14px;
+  border: none;
+  background-color: transparent;
+  color: #666;
+  font-size: 0.85em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.lang-btn:hover {
+  background-color: #e8e8e8;
+}
+
+.lang-btn.active {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.lang-btn + .lang-btn {
+  border-left: 1px solid #ccc;
+}
+
+@media (max-width: 768px) {
+  .header-inner {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .lang-switcher {
+    align-self: flex-end;
+  }
+}

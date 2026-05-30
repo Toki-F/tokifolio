@@ -1,4 +1,4 @@
-window.projectsData = [
+export const projectsData = [
     {
         title: { ja: "AbVIS for Miraizuna <進行中>", en: "AbVIS for Miraizuna <In Progress>" },
         year: "2025/1~",
