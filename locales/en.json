@@ -1,0 +1,122 @@
+{
+  "meta": {
+    "title": "Toki Fukumoto - Portfolio",
+    "description": "Portfolio website of Toki Fukumoto.",
+    "ogTitle": "Toki Fukumoto - Portfolio",
+    "ogDescription": "Portfolio website of Toki Fukumoto."
+  },
+  "nav": {
+    "home": "Home",
+    "vision": "Vision",
+    "about": "About",
+    "records": "Records",
+    "contact": "Contact"
+  },
+  "footer": "© 2024 Toki Fukumoto. All rights reserved.",
+  "index": {
+    "heroName": "Toki Fukumoto/福本深稀",
+    "contactBtn": "Contact",
+    "projectsTitle": "My Projects",
+    "moreLink": "More >>",
+    "techLabel": "Tech:",
+    "projects": {
+      "tweetApp": {
+        "desc": "The first SNS I built, similar to X (formerly Twitter)"
+      },
+      "leanLife": {
+        "desc": "An IoT system that turns an existing refrigerator smart — managing food inventory, recommending meals, and tracking nutrition.<br>Conceived and presented at Shidojin Jr. Camp; started prototype development and applied to Mitou Junior."
+      },
+      "mayulink": {
+        "desc": "A MaaS platform that IoT-enables MAYU, an electric bus running in Kiryu City — tracking operations, auto-playing location-based ads, and more"
+      },
+      "aiVtuber": {
+        "desc": "A GPT-4-based AI VTuber. An AI VTuber is a virtual YouTuber powered by AI. Reads YouTube comments and responds with voice"
+      },
+      "canpass": {
+        "desc": "A note-sharing app for university students"
+      },
+      "miraizuna": {
+        "desc": "A next-generation digital infrastructure platform weaving human bonds and the future of cities"
+      }
+    }
+  },
+  "about": {
+    "title": "About Me",
+    "name": "Toki Fukumoto (福本深稀)",
+    "role": "Engineer, Digital creator",
+    "age": "Age: 20",
+    "birthday": "Birthday: 2005/1/1",
+    "bloodType": "Blood type: A (Rh-)",
+    "birthplace": "Born in: Midori City, Gunma",
+    "residence": "Resides in: Kiryu City, Gunma",
+    "tech": "Technologies: Rails, Ruby, JavaScript, Python, HTML, CSS, TypeScript, Adonis.js, Vue.js, Node.js, scikit-learn, TensorFlow, Docker, Heroku, AWS, Render, Cloudinary, Kali Linux, Ubuntu, Debian, Raspbian, ChatGPT, Claude, v0, Stable Diffusion, DALL-E, Midjourney, Llama",
+    "software": "Software: VS Code, Xcode, Clip Studio Paint, DaVinci Resolve, Blender, OBS, Postman, Ableton Live 11 Lite",
+    "historyTitle": "History",
+    "history": [
+      "2020/4 Enrolled in Kiryu High School Science & Math Program, Gunma",
+      "2021/3 Released \"TweetApp\"",
+      "2022/1–3 Participated in Gunma Shidojin Jr. Camp; presented \"Lean Life System\" and earned Shidojin certification",
+      "2022/8 Conducted MAYUlink public road demonstration with local companies and Gunma University",
+      "2023/3 Graduated from Kiryu High School Science & Math Program",
+      "2023/3 Developed GPT-3.5-based AI app \"MeidoChan\"",
+      "2023/4 Enrolled in Gunma University, Faculty of Science and Technology, Electronic & Mechanical Engineering",
+      "2023/6 Developed AI VTuber \"Mikuru\"; first live stream",
+      "2023/7– Part-time at IT companies; TA for SSH and various events; mentor experience",
+      "2023/1 Test release of \"CANPASS\"",
+      "2024/6 Started \"Miraizuna\" project",
+      "2024/9 Released \"Miraizuna\"; Alpha test began"
+    ],
+    "viewRecords": "View My Records"
+  },
+  "contact": {
+    "title": "Contact Me",
+    "intro1": "For work inquiries and other consultations, please reach out here",
+    "intro2": "Please fill in the required fields in the form below and submit.",
+    "nameLabel": "Name",
+    "emailLabel": "Email",
+    "messageLabel": "Message",
+    "namePlaceholder": "Enter your name",
+    "emailPlaceholder": "Enter your email address",
+    "messagePlaceholder": "Enter your message",
+    "submit": "Send Message"
+  },
+  "records": {
+    "close": "Close",
+    "loading": "Loading",
+    "prevMedia": "Previous media",
+    "nextMedia": "Next media"
+  },
+  "vision": {
+    "s1Title": "Building a More Resilient and Prosperous Civilization",
+    "s1p1": "My vision is to build a more resilient and prosperous civilization through technology.<br>As the ultimate goal, I aim to realize a \"Solar System Economic Zone\" where multiple bases on Earth and across the solar system are interconnected, maximizing the survival probability and expressive potential of civilization.<br>On this page, I outline the master plan leading to that final goal and what I will build in each field.",
+    "s1quote": "Rooted on Earth while transforming the entire solar system into our living space. — I leave the blueprint for that here.",
+    "s2Title": "Master Plan Overview",
+    "s2p1": "My plan is not merely a dream or slogan, but a long-term roadmap designed with a timeline and phases. The rough overview is as follows.",
+    "s2phase1": "<strong>Phase 1: Ground-based Foundation Building (~2030)</strong><br>Build technical capabilities, development organizations, and capital through AI, IT, IoT, and blockchain ventures.<br>Accumulate achievements with region-born services (AI operators, general-purpose AI agents, sharing economy, etc.).",
+    "s2phase2": "<strong>Phase 2: Mobility and Urban Infrastructure Transformation (2030s)</strong><br>Expand business in autonomous mobility, MaaS, and next-generation public transit to make \"urban-level convenience in rural areas\" a reality.<br>Simultaneously create model cases for disaster-resilient, decentralized regional societies.",
+    "s2phase3": "<strong>Phase 3: Energy Revolution and Fusion Business Launch (2035–2045)</strong><br>Leverage capital and technical foundations from existing businesses to engage in fusion power research and business, especially D–He3 fusion.<br>Realize high energy-density power supply to ease energy constraints on AI, space development, and advanced industries.",
+    "s2phase4": "<strong>Phase 4: Skyhook and Space Transport Infrastructure (2040s~)</strong><br>Begin development of skyhooks (orbital tethers as a precursor to space elevators) and next-generation space transport systems.<br>Move beyond rocket dependency and build infrastructure enabling mass transport to orbit, the Moon, and asteroids.",
+    "s2phase5": "<strong>Phase 5: Solar System Economic Zone and Post-Earth Civilization (2050–2100)</strong><br>Form multiple sustainable cities and communities on the Moon, asteroid belt, and beyond, in addition to Earth.<br>Supply a significant portion of civilization's energy and resources from off-Earth sources, creating humanity's \"second common sense.\"",
+    "s2p2": "The following sections organize what role each field plays within this phase structure.",
+    "s3Title": "Key Focus Areas",
+    "s3mobility": "Mobility",
+    "s3blockchain": "Blockchain",
+    "s3fusion": "Fusion Energy",
+    "s3space": "Space Development",
+    "s3p1": "I focus on these fields and continuously learn and practice the latest technologies and knowledge to realize my vision.<br>Based on my resources and plan, I will build ground-based businesses and infrastructure centered on AI/IT/IoT/blockchain in Phases 1 and 2, then use those achievements as a foundation to advance into the energy revolution and space development from Phase 3 onward.",
+    "s4Title": "AI / IT / IoT / Blockchain",
+    "s4p1": "My central path is <strong>Web → AI → Fusion / Skyhook → Solar System Economic Zone</strong>.<br>AI, IT, IoT, and blockchain are the <strong>core of Phase 1</strong> for rapidly climbing those first two steps.<br>Through general-purpose AI agents, voice interfaces, region-specific MaaS, and sharing economy services, I will solve real user problems while building technical capabilities, organizations, and cash flow.<br><br>I believe the current AI wave is one of the few \"civilization-layer rewriting\" moments of this century. Whether I can fully establish Web and AI businesses here will largely determine whether I can reach fusion, skyhooks, and the solar system economic zone.<br>That is why I position these years of AI development as a decisive opportunity that must not be missed.<br><br>These businesses are valuable in themselves and will serve as the \"brain\" and \"OS\" when expanding into mobility, energy, and space infrastructure.<br>Decentralized technologies like blockchain will serve as the foundation for ownership, trust, and incentive design at solar system scale, building the groundwork for an economic zone where all of humanity's creativity is maximally unleashed.",
+    "s5Title": "Current AI Development",
+    "s5p1": "Within Phase 1, AI-related development is where I place particular emphasis. These are not one-off products but designed as an \"economic engine\" and \"intelligence infrastructure\" supporting future fusion and skyhook businesses.",
+    "s5item1": "Real-time voice dialogue dispatch AI operator (MITT)<br>An AI that handles dispatch, reservations, and guidance through natural conversation with users — dramatically improving rural transit UX while honing core voice interface and real-time AI agent technology.<br>Mobility itself is not the core of my master plan, but it serves as an important experimental field — a \"sub-axis\" for verifying how AI connects with real-world movement and urban infrastructure.",
+    "s5item2": "General-purpose AI agent platform (Miraizuna)<br>An agent platform aiming for a world where \"anything you want happens just by speaking.\" Eventually connecting with humanoids and physical robots, it will grow into a platform that extends human action itself.",
+    "s5item3": "Natural language UI & AI avatars (AbVIS / MAVIUS, etc.)<br>Developing conversational interfaces and AI avatars that minimize the boundary between humans and systems. These are also prototypes of the \"frontend\" for humans to operate solar system-scale infrastructure without stress.",
+    "s5p2": "Through these projects, I will build \"businesses that actually work\" and \"reproducible development systems\" in the Web and AI domains, connecting to the subsequent fusion and space infrastructure phases.",
+    "s6Title": "Fusion Energy",
+    "s6p1": "Fusion, long called humanity's dream technology, is finally coming within reach of feasibility. Fusion not only solves energy and environmental problems but also holds decisive significance for AI evolution and space development.<br><br>In my master plan, fusion is positioned in <strong>Phase 3</strong>. Based on capital and networks formed through ground-based AI/IT and mobility businesses, I will fully engage in fusion power research and business, especially D–He3 fusion.<br>Combined with helium-3 mining abundant on the lunar surface, I will build Phase 3–4 bases with independent energy sources on the Moon and in orbit, creating the energy infrastructure that serves as the heart of the entire solar system economic zone.",
+    "s7Title": "Space Development",
+    "s7p1": "In the space development phase, I will undertake diverse initiatives including global tracking and Earth observation via satellite constellations, planetary engineering, next-generation transport systems replacing rockets, interplanetary communication using quantum technology, and resource mining on the Moon and asteroid belt.<br><br>In Phase 4, I will focus especially on building \"Earth-orbit mass transport infrastructure\" through skyhooks, orbital tethers, and reusable spacecraft. In Phase 5, I will connect multiple residential and industrial bases including lunar cities and asteroid mining outposts, forming a solar system-scale supply chain.<br><br>While building cooperative relationships with space agencies and companies including NASA and SpaceX, I will make a more robust, convenient, and efficient multi-planetary civilization a reality, laying the foundation for humanity's long-term sustainable future.",
+    "s8Title": "Continuous Growth and Adaptation",
+    "s8p1": "The world of technology is constantly changing, and continuous learning and adaptation are essential to stay at the forefront. My vision and master plan are extremely ambitious; realizing them requires many difficulties and a timeline spanning multiple generations. What I cannot do now, the next me or the next generation may achieve.<br><br>That is why I position this plan not as a \"fixed scenario that must happen exactly this way,\" but as a \"blueprint that continues to be updated with reality.\"<br>Precisely because it is an immensely difficult, grand, and important vision, it is worth dedicating one's life to. Realizing this vision is my reason for being, and I will believe in my vision, keep learning, continuously update my plan, and face difficulties head-on."
+  }
+}
