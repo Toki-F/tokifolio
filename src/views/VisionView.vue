@@ -1,18 +1,18 @@
 <template>
   <main class="container">
-    <div class="vision-content">
+    <div ref="visionContent" class="vision-content">
       <section class="vision-section vision-intro">
-        <h1>{{ t('vision.title') }}</h1>
-        <p v-html="t('vision.intro')"></p>
-        <div class="vision-quote">{{ t('vision.quote') }}</div>
+        <h1 class="intro-item intro-item-1">{{ t('vision.title') }}</h1>
+        <p class="intro-item intro-item-2" v-html="t('vision.intro')"></p>
+        <div class="vision-quote intro-item intro-item-3">{{ t('vision.quote') }}</div>
       </section>
 
-      <section class="vision-section phase-section">
+      <section class="vision-section phase-section" data-reveal>
         <div class="phase-label">{{ t('vision.phase1Label') }}</div>
         <h2>{{ t('vision.phase1Title') }}</h2>
         <p v-html="t('vision.phase1p1')"></p>
         <h3>{{ t('vision.phase1h1') }}</h3>
-        <ul>
+        <ul class="stagger-list">
           <li v-html="t('vision.phase1item1')"></li>
           <li v-html="t('vision.phase1item2')"></li>
           <li v-html="t('vision.phase1item3')"></li>
@@ -20,7 +20,7 @@
         </ul>
         <h3>{{ t('vision.phase1h2') }}</h3>
         <p v-html="t('vision.phase1p2')"></p>
-        <ul>
+        <ul class="stagger-list">
           <li v-html="t('vision.phase1item5')"></li>
           <li v-html="t('vision.phase1item6')"></li>
           <li v-html="t('vision.phase1item7')"></li>
@@ -29,7 +29,7 @@
         <p v-html="t('vision.phase1p3')"></p>
       </section>
 
-      <section class="vision-section vision-locked">
+      <section class="vision-section vision-locked" data-reveal>
         <template v-if="!isUnlocked">
           <div class="locked-gate">
             <div class="locked-icon" aria-hidden="true">🔒</div>
@@ -56,71 +56,73 @@
           </div>
         </template>
 
-        <template v-else>
-          <div class="ultra-plan-toolbar">
-            <span class="ultra-plan-badge">{{ t('vision.unlockedBadge') }}</span>
-            <button type="button" class="relock-btn" @click="handleLock">
-              {{ t('vision.relock') }}
-            </button>
+        <Transition name="vision-unlock" @after-enter="refreshReveal">
+          <div v-if="isUnlocked" class="unlocked-content">
+            <div class="ultra-plan-toolbar">
+              <span class="ultra-plan-badge">{{ t('vision.unlockedBadge') }}</span>
+              <button type="button" class="relock-btn" @click="handleLock">
+                {{ t('vision.relock') }}
+              </button>
+            </div>
+
+            <section class="vision-section ultra-intro" data-reveal>
+              <p v-html="t('vision.ultraIntro')"></p>
+            </section>
+
+            <section class="vision-section phase-section" data-reveal>
+              <div class="phase-label">{{ t('vision.phase2Label') }}</div>
+              <h2>{{ t('vision.phase2Title') }}</h2>
+              <p v-html="t('vision.phase2p1')"></p>
+              <h3>{{ t('vision.phase2h1') }}</h3>
+              <p v-html="t('vision.phase2p2')"></p>
+              <h3>{{ t('vision.phase2h2') }}</h3>
+              <p v-html="t('vision.phase2p3')"></p>
+              <h3>{{ t('vision.phase2h3') }}</h3>
+              <p v-html="t('vision.phase2p4')"></p>
+              <h3>{{ t('vision.phase2h4') }}</h3>
+              <p v-html="t('vision.phase2p5')"></p>
+            </section>
+
+            <section class="vision-section phase-section" data-reveal>
+              <div class="phase-label">{{ t('vision.phase3Label') }}</div>
+              <h2>{{ t('vision.phase3Title') }}</h2>
+              <p v-html="t('vision.phase3p1')"></p>
+              <ul class="stagger-list">
+                <li v-html="t('vision.phase3item1')"></li>
+                <li v-html="t('vision.phase3item2')"></li>
+                <li v-html="t('vision.phase3item3')"></li>
+              </ul>
+              <p v-html="t('vision.phase3p2')"></p>
+            </section>
+
+            <section class="vision-section phase-section" data-reveal>
+              <div class="phase-label">{{ t('vision.phase4Label') }}</div>
+              <h2>{{ t('vision.phase4Title') }}</h2>
+              <p v-html="t('vision.phase4p1')"></p>
+              <ul class="stagger-list">
+                <li v-html="t('vision.phase4item1')"></li>
+                <li v-html="t('vision.phase4item2')"></li>
+                <li v-html="t('vision.phase4item3')"></li>
+              </ul>
+              <p v-html="t('vision.phase4p2')"></p>
+            </section>
+
+            <section class="vision-section phase-section phase-final" data-reveal>
+              <div class="phase-label">{{ t('vision.phase5Label') }}</div>
+              <h2>{{ t('vision.phase5Title') }}</h2>
+              <p v-html="t('vision.phase5p1')"></p>
+              <h3>{{ t('vision.phase5h1') }}</h3>
+              <p v-html="t('vision.phase5p2')"></p>
+              <h3>{{ t('vision.phase5h2') }}</h3>
+              <ul class="stagger-list">
+                <li v-html="t('vision.phase5item1')"></li>
+                <li v-html="t('vision.phase5item2')"></li>
+                <li v-html="t('vision.phase5item3')"></li>
+              </ul>
+              <p v-html="t('vision.phase5p3')"></p>
+            </section>
           </div>
-
-          <section class="vision-section ultra-intro">
-            <p v-html="t('vision.ultraIntro')"></p>
-          </section>
-
-          <section class="vision-section phase-section">
-            <div class="phase-label">{{ t('vision.phase2Label') }}</div>
-            <h2>{{ t('vision.phase2Title') }}</h2>
-            <p v-html="t('vision.phase2p1')"></p>
-            <h3>{{ t('vision.phase2h1') }}</h3>
-            <p v-html="t('vision.phase2p2')"></p>
-            <h3>{{ t('vision.phase2h2') }}</h3>
-            <p v-html="t('vision.phase2p3')"></p>
-            <h3>{{ t('vision.phase2h3') }}</h3>
-            <p v-html="t('vision.phase2p4')"></p>
-            <h3>{{ t('vision.phase2h4') }}</h3>
-            <p v-html="t('vision.phase2p5')"></p>
-          </section>
-
-          <section class="vision-section phase-section">
-            <div class="phase-label">{{ t('vision.phase3Label') }}</div>
-            <h2>{{ t('vision.phase3Title') }}</h2>
-            <p v-html="t('vision.phase3p1')"></p>
-            <ul>
-              <li v-html="t('vision.phase3item1')"></li>
-              <li v-html="t('vision.phase3item2')"></li>
-              <li v-html="t('vision.phase3item3')"></li>
-            </ul>
-            <p v-html="t('vision.phase3p2')"></p>
-          </section>
-
-          <section class="vision-section phase-section">
-            <div class="phase-label">{{ t('vision.phase4Label') }}</div>
-            <h2>{{ t('vision.phase4Title') }}</h2>
-            <p v-html="t('vision.phase4p1')"></p>
-            <ul>
-              <li v-html="t('vision.phase4item1')"></li>
-              <li v-html="t('vision.phase4item2')"></li>
-              <li v-html="t('vision.phase4item3')"></li>
-            </ul>
-            <p v-html="t('vision.phase4p2')"></p>
-          </section>
-
-          <section class="vision-section phase-section phase-final">
-            <div class="phase-label">{{ t('vision.phase5Label') }}</div>
-            <h2>{{ t('vision.phase5Title') }}</h2>
-            <p v-html="t('vision.phase5p1')"></p>
-            <h3>{{ t('vision.phase5h1') }}</h3>
-            <p v-html="t('vision.phase5p2')"></p>
-            <h3>{{ t('vision.phase5h2') }}</h3>
-            <ul>
-              <li v-html="t('vision.phase5item1')"></li>
-              <li v-html="t('vision.phase5item2')"></li>
-              <li v-html="t('vision.phase5item3')"></li>
-            </ul>
-            <p v-html="t('vision.phase5p3')"></p>
-          </section>
-        </template>
+        </Transition>
       </section>
     </div>
   </main>
@@ -130,9 +132,13 @@
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useVisionAccess } from '@/composables/useVisionAccess'
+import { useScrollReveal } from '@/composables/useScrollReveal'
 
 const { t } = useI18n()
 const { isUnlocked, hasAccessKey, unlock, lock } = useVisionAccess()
+
+const visionContent = ref(null)
+const { refresh: refreshReveal } = useScrollReveal(visionContent)
 
 const keyInput = ref('')
 const unlockError = ref(false)
@@ -155,6 +161,7 @@ function handleLock() {
 
 <style scoped>
 .vision-content {
+  position: relative;
   background-color: rgba(255, 255, 255, 0.8);
   border-radius: 10px;
   padding: 30px;
@@ -162,10 +169,71 @@ function handleLock() {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   font-size: 16px;
   line-height: 1.8;
+  overflow: hidden;
+}
+
+.vision-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #3498db, #2ecc71, #3498db);
+  background-size: 200% 100%;
+  animation: shimmer 4s ease-in-out infinite;
 }
 
 .vision-section {
   margin-bottom: 40px;
+}
+
+.intro-item {
+  opacity: 0;
+  transform: translateY(24px);
+  animation: introFadeIn 0.85s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.intro-item-1 {
+  animation-delay: 0.1s;
+}
+
+.intro-item-2 {
+  animation-delay: 0.28s;
+}
+
+.intro-item-3 {
+  animation-delay: 0.46s;
+}
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(32px);
+  transition:
+    opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+[data-reveal].is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+[data-reveal].is-revealed .stagger-list li {
+  animation: listItemFadeIn 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+[data-reveal].is-revealed .stagger-list li:nth-child(1) { animation-delay: 0.12s; }
+[data-reveal].is-revealed .stagger-list li:nth-child(2) { animation-delay: 0.22s; }
+[data-reveal].is-revealed .stagger-list li:nth-child(3) { animation-delay: 0.32s; }
+[data-reveal].is-revealed .stagger-list li:nth-child(4) { animation-delay: 0.42s; }
+[data-reveal].is-revealed .stagger-list li:nth-child(5) { animation-delay: 0.52s; }
+[data-reveal].is-revealed .stagger-list li:nth-child(6) { animation-delay: 0.62s; }
+[data-reveal].is-revealed .stagger-list li:nth-child(7) { animation-delay: 0.72s; }
+
+.stagger-list li {
+  opacity: 0;
+  transform: translateX(-12px);
 }
 
 .vision-intro h1 {
@@ -200,10 +268,12 @@ function handleLock() {
   padding: 4px 14px;
   border-radius: 4px;
   margin-bottom: 12px;
+  box-shadow: 0 2px 8px rgba(52, 152, 219, 0.35);
 }
 
 .phase-final .phase-label {
   background: #2c3e50;
+  box-shadow: 0 2px 8px rgba(44, 62, 80, 0.35);
 }
 
 .vision-quote {
@@ -240,6 +310,7 @@ function handleLock() {
 .locked-icon {
   font-size: 2.5rem;
   margin-bottom: 12px;
+  animation: lockPulse 2.5s ease-in-out infinite;
 }
 
 .locked-gate h2 {
@@ -279,6 +350,7 @@ function handleLock() {
   border: 1px solid #bdc3c7;
   border-radius: 6px;
   font-size: 1em;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
 .locked-input-row input:focus {
@@ -297,6 +369,7 @@ function handleLock() {
   font-weight: 600;
   cursor: pointer;
   white-space: nowrap;
+  transition: background-color 0.25s ease, transform 0.2s ease;
 }
 
 .locked-input-row button:disabled,
@@ -307,6 +380,7 @@ function handleLock() {
 
 .locked-input-row button:not(:disabled):hover {
   background: #2980b9;
+  transform: translateY(-1px);
 }
 
 .locked-error {
@@ -319,6 +393,24 @@ function handleLock() {
   margin-top: 12px;
   color: #95a5a6;
   font-size: 0.85em;
+}
+
+.vision-unlock-enter-active {
+  transition:
+    opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.vision-unlock-leave-active {
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease;
+}
+
+.vision-unlock-enter-from,
+.vision-unlock-leave-to {
+  opacity: 0;
+  transform: translateY(20px);
 }
 
 .ultra-plan-toolbar {
@@ -338,6 +430,7 @@ function handleLock() {
   font-weight: 600;
   padding: 6px 14px;
   border-radius: 4px;
+  animation: badgeGlow 2s ease-in-out infinite;
 }
 
 .relock-btn {
@@ -348,6 +441,7 @@ function handleLock() {
   border-radius: 6px;
   font-size: 0.9em;
   cursor: pointer;
+  transition: color 0.25s ease, border-color 0.25s ease;
 }
 
 .relock-btn:hover {
@@ -361,5 +455,77 @@ function handleLock() {
   border-left: 4px solid #2c3e50;
   border-radius: 0 8px 8px 0;
   margin-bottom: 32px;
+}
+
+@keyframes introFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes listItemFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes shimmer {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes lockPulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 0.85;
+  }
+}
+
+@keyframes badgeGlow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 rgba(44, 62, 80, 0);
+  }
+  50% {
+    box-shadow: 0 0 16px rgba(44, 62, 80, 0.35);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro-item,
+  [data-reveal],
+  .stagger-list li,
+  .locked-icon,
+  .ultra-plan-badge,
+  .vision-content::before {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  [data-reveal].is-revealed .stagger-list li {
+    animation: none !important;
+  }
 }
 </style>
