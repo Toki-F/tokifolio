@@ -3,16 +3,18 @@
     <div ref="visionContent" class="vision-content">
       <!-- Intro -->
       <section class="vision-section vision-intro">
-        <div class="intro-grid">
+        <div class="intro-grid" :class="{ 'intro-grid--solo': !hasVisionMedia('intro') }">
           <div class="intro-text">
             <h1 class="intro-item intro-item-1">{{ t('vision.title') }}</h1>
             <p class="intro-item intro-item-2" v-html="t('vision.intro')"></p>
             <div class="vision-quote intro-item intro-item-3">{{ t('vision.quote') }}</div>
           </div>
-          <figure class="intro-visual intro-item intro-item-4 is-revealed">
-            <VisionDiagram type="intro" :caption="t('vision.diagrams.intro')" />
-            <figcaption>{{ t('vision.diagrams.intro') }}</figcaption>
-          </figure>
+          <VisionMediaFigure
+            media-key="intro"
+            variant="intro"
+            :caption="t('vision.media.intro')"
+            intro-item
+          />
         </div>
       </section>
 
@@ -24,7 +26,7 @@
           <p v-html="t('vision.phase1p1')"></p>
         </div>
 
-        <div class="phase-split">
+        <div class="phase-split" :class="{ 'phase-split--solo': !hasVisionMedia('nexus') }">
           <div class="phase-text" data-reveal data-reveal-direction="left">
             <h3>{{ t('vision.phase1h1') }}</h3>
             <ul class="stagger-list">
@@ -34,17 +36,24 @@
               <li v-html="t('vision.phase1item4')"></li>
             </ul>
           </div>
-          <figure class="phase-visual" data-reveal data-reveal-delay="3" data-reveal-direction="right">
-            <VisionDiagram type="nexus" :caption="t('vision.diagrams.nexus')" />
-            <figcaption>{{ t('vision.diagrams.nexus') }}</figcaption>
-          </figure>
+          <VisionMediaFigure
+            media-key="nexus"
+            :caption="t('vision.media.nexus')"
+            reveal-delay="3"
+            reveal-direction="right"
+          />
         </div>
 
-        <div class="phase-split phase-split-reverse">
-          <figure class="phase-visual" data-reveal data-reveal-delay="1" data-reveal-direction="left">
-            <VisionDiagram type="sda" :caption="t('vision.diagrams.sda')" />
-            <figcaption>{{ t('vision.diagrams.sda') }}</figcaption>
-          </figure>
+        <div
+          class="phase-split phase-split-reverse"
+          :class="{ 'phase-split--solo': !hasVisionMedia('sda') }"
+        >
+          <VisionMediaFigure
+            media-key="sda"
+            :caption="t('vision.media.sda')"
+            reveal-delay="1"
+            reveal-direction="left"
+          />
           <div class="phase-text" data-reveal data-reveal-delay="3" data-reveal-direction="right">
             <h3>{{ t('vision.phase1h2') }}</h3>
             <p v-html="t('vision.phase1p2')"></p>
@@ -113,37 +122,46 @@
                 <p v-html="t('vision.phase2p1')"></p>
               </div>
 
-              <div class="phase-split">
+              <div class="phase-split" :class="{ 'phase-split--solo': !hasVisionMedia('skyhook') }">
                 <div class="phase-text" data-reveal data-reveal-direction="left">
                   <h3>{{ t('vision.phase2h1') }}</h3>
                   <p v-html="t('vision.phase2p2')"></p>
                 </div>
-                <figure class="phase-visual" data-reveal data-reveal-delay="3" data-reveal-direction="right">
-                  <VisionDiagram type="skyhook" :caption="t('vision.diagrams.skyhook')" />
-                  <figcaption>{{ t('vision.diagrams.skyhook') }}</figcaption>
-                </figure>
+                <VisionMediaFigure
+                  media-key="skyhook"
+                  :caption="t('vision.media.skyhook')"
+                  reveal-delay="3"
+                  reveal-direction="right"
+                />
               </div>
 
-              <div class="phase-split phase-split-reverse">
-                <figure class="phase-visual" data-reveal data-reveal-delay="1" data-reveal-direction="left">
-                  <VisionDiagram type="fusion" :caption="t('vision.diagrams.fusion')" />
-                  <figcaption>{{ t('vision.diagrams.fusion') }}</figcaption>
-                </figure>
+              <div
+                class="phase-split phase-split-reverse"
+                :class="{ 'phase-split--solo': !hasVisionMedia('fusion') }"
+              >
+                <VisionMediaFigure
+                  media-key="fusion"
+                  :caption="t('vision.media.fusion')"
+                  reveal-delay="1"
+                  reveal-direction="left"
+                />
                 <div class="phase-text" data-reveal data-reveal-delay="3" data-reveal-direction="right">
                   <h3>{{ t('vision.phase2h2') }}</h3>
                   <p v-html="t('vision.phase2p3')"></p>
                 </div>
               </div>
 
-              <div class="phase-split">
+              <div class="phase-split" :class="{ 'phase-split--solo': !hasVisionMedia('massDriver') }">
                 <div class="phase-text" data-reveal data-reveal-direction="left">
                   <h3>{{ t('vision.phase2h3') }}</h3>
                   <p v-html="t('vision.phase2p4')"></p>
                 </div>
-                <figure class="phase-visual" data-reveal data-reveal-delay="3" data-reveal-direction="right">
-                  <VisionDiagram type="mass-driver" :caption="t('vision.diagrams.massDriver')" />
-                  <figcaption>{{ t('vision.diagrams.massDriver') }}</figcaption>
-                </figure>
+                <VisionMediaFigure
+                  media-key="massDriver"
+                  :caption="t('vision.media.massDriver')"
+                  reveal-delay="3"
+                  reveal-direction="right"
+                />
               </div>
 
               <div class="phase-block" data-reveal>
@@ -154,16 +172,18 @@
 
             <!-- Phase 3 -->
             <section class="vision-section">
-              <div class="phase-split">
+              <div class="phase-split" :class="{ 'phase-split--solo': !hasVisionMedia('mars') }">
                 <div class="phase-text" data-reveal data-reveal-direction="left">
                   <div class="phase-label">{{ t('vision.phase3Label') }}</div>
                   <h2>{{ t('vision.phase3Title') }}</h2>
                   <p v-html="t('vision.phase3p1')"></p>
                 </div>
-                <figure class="phase-visual" data-reveal data-reveal-delay="3" data-reveal-direction="right">
-                  <VisionDiagram type="mars" :caption="t('vision.diagrams.mars')" />
-                  <figcaption>{{ t('vision.diagrams.mars') }}</figcaption>
-                </figure>
+                <VisionMediaFigure
+                  media-key="mars"
+                  :caption="t('vision.media.mars')"
+                  reveal-delay="3"
+                  reveal-direction="right"
+                />
               </div>
 
               <div class="phase-block" data-reveal>
@@ -178,11 +198,16 @@
 
             <!-- Phase 4 -->
             <section class="vision-section">
-              <div class="phase-split phase-split-reverse">
-                <figure class="phase-visual" data-reveal data-reveal-delay="1" data-reveal-direction="left">
-                  <VisionDiagram type="galaxy" :caption="t('vision.diagrams.galaxy')" />
-                  <figcaption>{{ t('vision.diagrams.galaxy') }}</figcaption>
-                </figure>
+              <div
+                class="phase-split phase-split-reverse"
+                :class="{ 'phase-split--solo': !hasVisionMedia('galaxy') }"
+              >
+                <VisionMediaFigure
+                  media-key="galaxy"
+                  :caption="t('vision.media.galaxy')"
+                  reveal-delay="1"
+                  reveal-direction="left"
+                />
                 <div class="phase-text" data-reveal data-reveal-delay="3" data-reveal-direction="right">
                   <div class="phase-label">{{ t('vision.phase4Label') }}</div>
                   <h2>{{ t('vision.phase4Title') }}</h2>
@@ -202,16 +227,19 @@
 
             <!-- Phase 5 -->
             <section class="vision-section phase-final">
-              <div class="phase-split">
+              <div class="phase-split" :class="{ 'phase-split--solo': !hasVisionMedia('blackhole') }">
                 <div class="phase-text" data-reveal data-reveal-direction="left">
                   <div class="phase-label">{{ t('vision.phase5Label') }}</div>
                   <h2>{{ t('vision.phase5Title') }}</h2>
                   <p v-html="t('vision.phase5p1')"></p>
                 </div>
-                <figure class="phase-visual phase-visual-dark" data-reveal data-reveal-delay="3" data-reveal-direction="right">
-                  <VisionDiagram type="blackhole" :caption="t('vision.diagrams.blackhole')" />
-                  <figcaption>{{ t('vision.diagrams.blackhole') }}</figcaption>
-                </figure>
+                <VisionMediaFigure
+                  media-key="blackhole"
+                  variant="dark"
+                  :caption="t('vision.media.blackhole')"
+                  reveal-delay="3"
+                  reveal-direction="right"
+                />
               </div>
 
               <div class="phase-block" data-reveal>
@@ -241,7 +269,8 @@ import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useVisionAccess } from '@/composables/useVisionAccess'
 import { useScrollReveal } from '@/composables/useScrollReveal'
-import VisionDiagram from '@/components/vision/VisionDiagram.vue'
+import VisionMediaFigure from '@/components/vision/VisionMediaFigure.vue'
+import { hasVisionMedia } from '@/data/vision-media'
 
 const { t } = useI18n()
 const { isUnlocked, hasAccessKey, unlock, lock } = useVisionAccess()
@@ -305,22 +334,26 @@ function handleLock() {
 }
 
 .intro-visual,
-.phase-visual {
+.phase-visual,
+.vision-media-figure.intro-visual,
+.vision-media-figure.phase-visual {
   margin: 0;
-  padding: 20px;
+  padding: 12px;
   background: linear-gradient(135deg, #f8f9fa 0%, #ecf0f1 100%);
   border-radius: 12px;
   border: 1px solid #dce1e4;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
 }
 
-.phase-visual-dark {
+.phase-visual-dark,
+.vision-media-figure.phase-visual-dark {
   background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
   border-color: #2c3e50;
 }
 
 .intro-visual figcaption,
-.phase-visual figcaption {
+.phase-visual figcaption,
+.vision-media-figure figcaption {
   margin-top: 12px;
   text-align: center;
   font-size: 0.85em;
@@ -344,7 +377,16 @@ function handleLock() {
   margin-bottom: 36px;
 }
 
-.phase-split-reverse .phase-visual {
+.intro-grid--solo {
+  grid-template-columns: 1fr;
+}
+
+.phase-split--solo {
+  grid-template-columns: 1fr;
+}
+
+.phase-split-reverse .phase-visual,
+.phase-split-reverse .vision-media-figure.phase-visual {
   order: -1;
 }
 
@@ -651,7 +693,8 @@ function handleLock() {
     grid-template-columns: 1fr;
   }
 
-  .phase-split-reverse .phase-visual {
+  .phase-split-reverse .phase-visual,
+  .phase-split-reverse .vision-media-figure.phase-visual {
     order: 0;
   }
 }
