@@ -153,12 +153,9 @@
     "media": {
       "intro": "Star Dream — 知性体ネットワークの起点",
       "nexus": "Nexus — 知性体ネットワークの実証実験体",
-      "sda": "SDA — Discovery / Domination / Harmony",
       "skyhook": "Skyhook — 重力の檻を破る回転テザー",
       "fusion": "D–He³ 核融合 — 太陽系規模のエネルギー源",
-      "massDriver": "Mass Driver — 電磁推進による軌道投入",
       "mars": "火星独立 — 太陽系経済圏の拠点",
-      "galaxy": "銀河文明 — 恒星間知性体ネットワーク",
       "blackhole": "BHIE — ブラックホールコンピューター"
     }
   }
