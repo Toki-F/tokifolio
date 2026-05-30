@@ -30,6 +30,11 @@ export function useScrollReveal(containerRef, options = {}) {
     )
 
     containerRef.value.querySelectorAll(selector).forEach((element) => {
+      const delay = element.dataset.revealDelay
+      if (delay !== undefined) {
+        element.style.transitionDelay = `${Number(delay) * 0.12}s`
+      }
+
       if (!element.classList.contains('is-revealed')) {
         observer.observe(element)
       }
