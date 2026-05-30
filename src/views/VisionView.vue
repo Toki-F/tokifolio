@@ -9,60 +9,47 @@
 
       <section class="vision-section">
         <h2>{{ t('vision.s2Title') }}</h2>
-        <p>{{ t('vision.s2p1') }}</p>
-        <ol>
-          <li v-html="t('vision.s2phase1')"></li>
-          <li v-html="t('vision.s2phase2')"></li>
-          <li v-html="t('vision.s2phase3')"></li>
-          <li v-html="t('vision.s2phase4')"></li>
-          <li v-html="t('vision.s2phase5')"></li>
-        </ol>
-        <p>{{ t('vision.s2p2') }}</p>
+        <p v-html="t('vision.s2p1')"></p>
+        <ul>
+          <li v-html="t('vision.s2item1')"></li>
+          <li v-html="t('vision.s2item2')"></li>
+          <li v-html="t('vision.s2item3')"></li>
+        </ul>
+        <p v-html="t('vision.s2p2')"></p>
       </section>
 
       <section class="vision-section">
         <h2>{{ t('vision.s3Title') }}</h2>
-        <ul>
-          <li>AI</li>
-          <li>IT</li>
-          <li>IoT</li>
-          <li>{{ t('vision.s3mobility') }}</li>
-          <li>{{ t('vision.s3blockchain') }}</li>
-          <li>{{ t('vision.s3fusion') }}</li>
-          <li>{{ t('vision.s3space') }}</li>
-        </ul>
         <p v-html="t('vision.s3p1')"></p>
+        <h3 class="vision-subheading">{{ t('vision.s3fusionTitle') }}</h3>
+        <p v-html="t('vision.s3fusion')"></p>
+        <h3 class="vision-subheading">{{ t('vision.s3skyhookTitle') }}</h3>
+        <p v-html="t('vision.s3skyhook')"></p>
+        <h3 class="vision-subheading">{{ t('vision.s3massDriverTitle') }}</h3>
+        <p v-html="t('vision.s3massDriver')"></p>
       </section>
 
       <section class="vision-section">
         <h2>{{ t('vision.s4Title') }}</h2>
         <p v-html="t('vision.s4p1')"></p>
+        <ul>
+          <li v-html="t('vision.s4item1')"></li>
+          <li v-html="t('vision.s4item2')"></li>
+          <li v-html="t('vision.s4item3')"></li>
+          <li v-html="t('vision.s4item4')"></li>
+        </ul>
+        <p v-html="t('vision.s4p2')"></p>
       </section>
 
       <section class="vision-section">
         <h2>{{ t('vision.s5Title') }}</h2>
-        <p>{{ t('vision.s5p1') }}</p>
-        <ul>
-          <li v-html="t('vision.s5item1')"></li>
-          <li v-html="t('vision.s5item2')"></li>
-          <li v-html="t('vision.s5item3')"></li>
-        </ul>
-        <p>{{ t('vision.s5p2') }}</p>
+        <p v-html="t('vision.s5p1')"></p>
+        <p v-html="t('vision.s5p2')"></p>
       </section>
 
       <section class="vision-section">
         <h2>{{ t('vision.s6Title') }}</h2>
         <p v-html="t('vision.s6p1')"></p>
-      </section>
-
-      <section class="vision-section">
-        <h2>{{ t('vision.s7Title') }}</h2>
-        <p v-html="t('vision.s7p1')"></p>
-      </section>
-
-      <section class="vision-section">
-        <h2>{{ t('vision.s8Title') }}</h2>
-        <p v-html="t('vision.s8p1')"></p>
       </section>
     </div>
   </main>
@@ -97,6 +84,12 @@ const { t } = useI18n()
   font-size: 1.8em;
 }
 
+.vision-subheading {
+  color: #34495e;
+  font-size: 1.2em;
+  margin: 24px 0 12px;
+}
+
 .vision-quote {
   font-style: italic;
   font-size: 1.1em;
@@ -104,5 +97,13 @@ const { t } = useI18n()
   border-left: 4px solid #3498db;
   padding-left: 20px;
   margin: 20px 0;
+}
+
+.vision-section ul {
+  padding-left: 1.4em;
+}
+
+.vision-section li {
+  margin-bottom: 0.75em;
 }
 </style>
